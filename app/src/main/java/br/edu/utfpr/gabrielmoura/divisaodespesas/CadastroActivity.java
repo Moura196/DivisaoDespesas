@@ -22,11 +22,14 @@ public class CadastroActivity extends AppCompatActivity {
 
         editTextNome = findViewById(R.id.editTextNome);
         radioGroupGenero = findViewById(R.id.radioGroupGenero);
+        spinnerGrupoFamiliar = findViewById(R.id.spinnerGrupoFamiliar);
+
     }
 
     public void limparCampos(View view) {
         editTextNome.setText(null);
         radioGroupGenero.clearCheck();
+        spinnerGrupoFamiliar.setSelection(0);
 
         editTextNome.requestFocus();
 
@@ -58,13 +61,16 @@ public class CadastroActivity extends AppCompatActivity {
             genero = "Feminino";
         } else {
             Toast.makeText(this,
-                    "Faltou selecionar um gênero",
+                    R.string.faltou_selecionar_um_genero,
                     Toast.LENGTH_LONG).show();
         };
 
+        String grupoFamiliar = (String) spinnerGrupoFamiliar.getSelectedItem();
+
         Toast.makeText(this,
                 "Nome: " + nome +
-                        "\nGênero: " + genero,
+                        "\nGênero: " + genero +
+                        "\nGrupo Familiar: " + grupoFamiliar,
                         Toast.LENGTH_LONG).show();
     }
 }
