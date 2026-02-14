@@ -10,9 +10,6 @@
     <string name="informar_um_nome">É preciso informar um nome.</string>
     <string name="media_precisa_ser_informada">A média precisa ser informada.</string>
     <string name="nomeValor">"Nome: "</string>
-    <string name="mediaValor">"Média: "</string>
-    <string name="media_invalida">Média inválida. Informe um número inteiro.</string>
-    <string name="media_entre_zero_e_100">Média deve ser entre zero e 100!</string>
     <string name="radio_button_opcao_masculino">Masculino</string>
     <string name="radio_button_opcao_feminino">Feminino</string>
     <string name="grupo_familiar">Grupo familiar</string>
