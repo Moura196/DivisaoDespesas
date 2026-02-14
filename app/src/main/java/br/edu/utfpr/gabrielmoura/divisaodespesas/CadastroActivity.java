@@ -2,6 +2,7 @@ package br.edu.utfpr.gabrielmoura.divisaodespesas;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -14,6 +15,7 @@ public class CadastroActivity extends AppCompatActivity {
     private EditText editTextNome;
     private RadioGroup radioGroupGenero;
     private Spinner spinnerGrupoFamiliar;
+    private CheckBox checkBoxResponsavel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,7 @@ public class CadastroActivity extends AppCompatActivity {
         editTextNome = findViewById(R.id.editTextNome);
         radioGroupGenero = findViewById(R.id.radioGroupGenero);
         spinnerGrupoFamiliar = findViewById(R.id.spinnerGrupoFamiliar);
+        checkBoxResponsavel = findViewById(R.id.checkBoxResponsavel);
 
     }
 
@@ -30,6 +33,7 @@ public class CadastroActivity extends AppCompatActivity {
         editTextNome.setText(null);
         radioGroupGenero.clearCheck();
         spinnerGrupoFamiliar.setSelection(0);
+        checkBoxResponsavel.setSelected(false);
 
         editTextNome.requestFocus();
 
@@ -67,10 +71,15 @@ public class CadastroActivity extends AppCompatActivity {
 
         String grupoFamiliar = (String) spinnerGrupoFamiliar.getSelectedItem();
 
+        boolean responsavel = checkBoxResponsavel.isChecked();
+
         Toast.makeText(this,
                 "Nome: " + nome +
                         "\nGênero: " + genero +
-                        "\nGrupo Familiar: " + grupoFamiliar,
+                        "\nGrupo Familiar: " + grupoFamiliar +
+                        "\nResponsável: " + (responsavel ?
+                            getString(R.string.responsavel_pelas_contas) :
+                            getString(R.string.nao_responsavel)),
                         Toast.LENGTH_LONG).show();
     }
 }

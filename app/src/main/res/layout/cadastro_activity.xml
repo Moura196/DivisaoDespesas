@@ -92,7 +92,7 @@
     <Spinner
         android:id="@+id/spinnerGrupoFamiliar"
         android:layout_width="0dp"
-        android:layout_height="19dp"
+        android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -101,6 +101,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewGrupoFamiliar" />
+
+    <CheckBox
+        android:id="@+id/checkBoxResponsavel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/responsavel_pelas_contas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerGrupoFamiliar" />
 
     <Button
         android:id="@+id/buttonSalvar"
@@ -113,7 +123,7 @@
         app:layout_constraintEnd_toStartOf="@+id/buttonLimpar"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerGrupoFamiliar" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxResponsavel" />
 
     <Button
         android:id="@+id/buttonLimpar"

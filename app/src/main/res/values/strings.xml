@@ -16,4 +16,6 @@
     <string name="grupo_familiar">Grupo familiar</string>
     <string name="casal_1">Casal 1</string>
     <string name="casal_2">Casal 2</string>
+    <string name="responsavel_pelas_contas">Responsável pelas contas</string>
+    <string name="nao_responsavel">Não é responsável pelas contas</string>
 </resources>
