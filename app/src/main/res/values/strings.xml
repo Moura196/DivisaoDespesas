@@ -12,5 +12,8 @@
     <string name="nomeValor">"Nome: "</string>
     <string name="radio_button_opcao_masculino">Masculino</string>
     <string name="radio_button_opcao_feminino">Feminino</string>
+    <string name="faltou_selecionar_um_genero">Faltou selecionar um gênero</string>
     <string name="grupo_familiar">Grupo familiar</string>
+    <string name="casal_1">Casal 1</string>
+    <string name="casal_2">Casal 2</string>
 </resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="grupo_familiar">
+        <item>@string/casal_1</item>
+        <item>@string/casal_2</item>
+    </string-array>
+
+</resources>
