@@ -51,7 +51,7 @@ public class CadastroActivity extends AppCompatActivity {
 
         int radioButtonId = radioGroupGenero.getCheckedRadioButtonId();
 
-        String genero;
+        String genero = "";
         if (radioButtonId == R.id.radioButtonMasculino) {
             genero = "Masculino";
         } else if (radioButtonId == R.id.radioButtonFeminino) {
@@ -61,5 +61,10 @@ public class CadastroActivity extends AppCompatActivity {
                     "Faltou selecionar um gênero",
                     Toast.LENGTH_LONG).show();
         };
+
+        Toast.makeText(this,
+                "Nome: " + nome +
+                        "\nGênero: " + genero,
+                        Toast.LENGTH_LONG).show();
     }
 }
