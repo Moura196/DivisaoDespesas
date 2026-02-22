@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class CadastroActivity extends AppCompatActivity {
+public class CadastroUserActivity extends AppCompatActivity {
 
     private EditText editTextNome;
     private RadioGroup radioGroupGenero;

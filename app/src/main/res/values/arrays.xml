@@ -6,4 +6,76 @@
         <item>@string/casal_2</item>
     </string-array>
 
+    <string-array name="morador_comprador_cadastrado">
+        <item>@string/morador_Jorge</item>
+        <item>@string/morador_Viviane</item>
+        <item>@string/morador_Gabriel</item>
+        <item>@string/morador_Amanda</item>
+    </string-array>
+
+    <string-array name="lancamentos_descricao">
+        <item>Feira Orgânica</item>
+        <item>RedeMix</item>
+        <item>Atacadão</item>
+        <item>Conta de Água</item>
+        <item>Conta de Luz</item>
+        <item>Ovos</item>
+        <item>Assaí</item>
+        <item>Queijo</item>
+        <item>Castanha</item>
+        <item>Azeite</item>
+    </string-array>
+
+    <string-array name="lancamentos_valor_total">
+        <item>45.85</item>
+        <item>12</item>
+        <item>165.50</item>
+        <item>24.32</item>
+        <item>32.44</item>
+        <item>44</item>
+        <item>82.72</item>
+        <item>89.22</item>
+        <item>11.35</item>
+        <item>22</item>
+    </string-array>
+
+    <string-array name="lancamentos_data">
+        <item>2026-22-02</item>
+        <item>2026-20-02</item>
+        <item>2026-18-02</item>
+        <item>2026-16-02</item>
+        <item>2026-14-02</item>
+        <item>2026-12-02</item>
+        <item>2026-10-02</item>
+        <item>2026-08-02</item>
+        <item>2026-06-02</item>
+        <item>2026-04-02</item>
+    </string-array>
+
+    <integer-array name="lancamentos_morador_comprador">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>0</item>
+        <item>2</item>
+        <item>3</item>
+        <item>1</item>
+        <item>0</item>
+        <item>3</item>
+    </integer-array>
+
+    <integer-array name="lancamentos_tipo_lancamento">
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>1</item>
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
+
 </resources>

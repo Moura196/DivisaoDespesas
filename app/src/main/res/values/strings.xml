@@ -1,14 +1,13 @@
 <resources>
+<!--    Página de cadastro do Morador-->
     <string name="app_cadastro">Cadastro de Morador</string>
     <string name="nome">Nome</string>
     <string name="genero">Gênero</string>
     <string name="limpar">Limpar</string>
     <string name="salvar">Salvar</string>
     <string name="nomeCompleto">Nome Completo</string>
-    <string name="mediaFinal">Média Final</string>
     <string name="limpeza_das_entradas">As entradas foram limpas!</string>
     <string name="informar_um_nome">É preciso informar um nome.</string>
-    <string name="media_precisa_ser_informada">A média precisa ser informada.</string>
     <string name="nomeValor">"Nome: "</string>
     <string name="radio_button_opcao_masculino">Masculino</string>
     <string name="radio_button_opcao_feminino">Feminino</string>
@@ -18,4 +17,21 @@
     <string name="casal_2">Casal 2</string>
     <string name="responsavel_pelas_contas">Responsável pelas contas</string>
     <string name="nao_responsavel">Não é responsável pelas contas</string>
+
+<!--    Página de listagem de Lançamentos-->
+    <string name="app_launcher">Listagem de Lançamentos</string>
+    <string name="morador_Jorge">Jorge</string>
+    <string name="morador_Viviane">Viviane</string>
+    <string name="morador_Gabriel">Gabriel</string>
+    <string name="morador_Amanda">Amanda</string>
+    <string name="descricao_lancamento">"Descrição: "</string>
+    <string name="valor_total_lancamento">"Valor total: "</string>
+    <string name="data_lancamento">"Data: "</string>
+    <string name="morador_comprador_lancamento">"Morador: "</string>
+    <string name="tipo_conta_casa">Conta de casa</string>
+    <string name="tipo_conta_mercado">Mercado</string>
+    <string name="lancamento_com_descriao">"Lançamento com descrição "</string>
+    <string name="foi_clicado">" foi clicado!"</string>
+    <string name="recebeu_um_clique_longo">" recebeu um clique longo!"</string>
+
 </resources>
