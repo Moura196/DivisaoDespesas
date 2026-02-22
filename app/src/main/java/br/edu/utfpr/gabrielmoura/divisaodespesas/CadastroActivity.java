@@ -15,7 +15,7 @@ public class CadastroActivity extends AppCompatActivity {
     private EditText editTextNome;
     private RadioGroup radioGroupGenero;
     private Spinner spinnerGrupoFamiliar;
-    private CheckBox checkBoxResponsavel;
+    private CheckBox checkBoxRespContas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class CadastroActivity extends AppCompatActivity {
         editTextNome = findViewById(R.id.editTextNome);
         radioGroupGenero = findViewById(R.id.radioGroupGenero);
         spinnerGrupoFamiliar = findViewById(R.id.spinnerGrupoFamiliar);
-        checkBoxResponsavel = findViewById(R.id.checkBoxResponsavel);
+        checkBoxRespContas = findViewById(R.id.checkBoxResponsavel);
 
     }
 
@@ -33,7 +33,7 @@ public class CadastroActivity extends AppCompatActivity {
         editTextNome.setText(null);
         radioGroupGenero.clearCheck();
         spinnerGrupoFamiliar.setSelection(0);
-        checkBoxResponsavel.setSelected(false);
+        checkBoxRespContas.setChecked(false);
 
         editTextNome.requestFocus();
 
@@ -71,7 +71,7 @@ public class CadastroActivity extends AppCompatActivity {
 
         String grupoFamiliar = (String) spinnerGrupoFamiliar.getSelectedItem();
 
-        boolean responsavel = checkBoxResponsavel.isChecked();
+        boolean responsavel = checkBoxRespContas.isChecked();
 
         Toast.makeText(this,
                 "Nome: " + nome +
