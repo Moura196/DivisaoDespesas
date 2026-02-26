@@ -1,4 +1,4 @@
-package br.edu.utfpr.gabrielmoura.divisaodespesas;
+package br.edu.utfpr.gabrielmoura.divisaodespesas.Lancamento;
 
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +17,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
+
 public class LancamentosActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewLancamentos;
@@ -28,7 +30,7 @@ public class LancamentosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lancamentos);
+        setContentView(R.layout.activity_listar_lancamentos);
         
         recyclerViewLancamentos = findViewById(R.id.recyclerViewLancamentos);
 

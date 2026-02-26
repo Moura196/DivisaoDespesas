@@ -1,4 +1,4 @@
-package br.edu.utfpr.gabrielmoura.divisaodespesas;
+package br.edu.utfpr.gabrielmoura.divisaodespesas.Lancamento;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,6 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
 
 public class LancamentoRecyclerViewAdapter extends RecyclerView.Adapter<LancamentoRecyclerViewAdapter.LancamentoHolder> {
 
