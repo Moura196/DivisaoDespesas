@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DivisaoDespesas">
         <activity
-            android:name=".LancamentosActivity"
+            android:name=".Lancamento.LancamentosActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CadastroUserActivity"
+            android:name=".Morador.CadastroMoradorActivity"
             android:exported="false">
         </activity>
     </application>
