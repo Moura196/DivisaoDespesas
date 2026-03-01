@@ -11,8 +11,7 @@ public class Lancamento  {
     private int morador_comprador; // spinner listando os moradores cadastrados
     private boolean tipo_lancamento; // checkbox identificando se é uma conta de casa ou compra de mercado
 
-    public Lancamento(Long id_lancamento, String descricao, Double valor_total, Date data, int morador_comprador, boolean tipo_lancamento) {
-        this.id_lancamento = id_lancamento;
+    public Lancamento(String descricao, Double valor_total, Date data, int morador_comprador, boolean tipo_lancamento) {
         this.descricao = descricao;
         this.valor_total = valor_total;
         this.data = data;

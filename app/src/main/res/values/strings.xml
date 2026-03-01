@@ -43,5 +43,21 @@
     <string name="informar_descricao">É preciso informar uma descrição para o lançamento.</string>
     <string name="informar_valor_total">Informar um valor total válido</string>
     <string name="informe_data_corretamente">Utilize a formatação correta para data</string>
+    <string name="logo_da_aplicacao">Logo do aplicativo</string>
+    <string name="descricao_app_sobre">"Descrição: O aplicativo visa resolver o problema de gestão de despesas
+        em habitações compartilhadas por múltiplos núcleos familiares. Ele auxiliará o usuário a registrar
+        compras de mercado e contas fixas, permitindo classificar cada gasto de acordo com quem deve pagar:
+        se a despesa é comum a todos os moradores ou se é exclusiva de um dos casais. O software elimina a
+        necessidade de anotações em papel e cálculos manuais complexos ao final do mês, fornecendo o valor
+        exato que cada morador ou casal deve reembolsar ao comprador original."</string>
+    <string name="autor_sobre">Autor: Gabriel Mendes de Moura</string>
+    <string name="disciplina_sobre">Discplina: Desenvolvimento Java Para Dispositivos Móveis</string>
+    <string name="curso_sobre">Curso: Pós Especialização em Java</string>
+    <string name="logo_utfpr">Logo da UTFPR</string>
+    <string name="email_sobre">E-mail: gabrielmendesmoura@alunos.utfpr.edu.br</string>
+    <string name="faculdade_sobre">Universidade: UTFPR</string>
+    <string name="botao_sobre">Sobre</string>
+    <string name="adicionar_lancamento">Adicionar</string>
+    <string name="informar_morador_comprador">O morador comprador deve ser selecionado.</string>
 
 </resources>
