@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<!--    Cores modo Light -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="blue">#3060F0</color>
+    <color name="lightBlue">#7087C8</color>
+
+<!--    Cores modo Dark -->
+    <color name="gray">#7E7E7E</color>
 </resources>
