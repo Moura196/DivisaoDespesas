@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewRotuloDescricao" />
 
     <TextView
-        android:id="@+id/textViewValorTotal"
+        android:id="@+id/textViewValorValorTotal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -66,7 +66,7 @@
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewRotuloData"
-        app:layout_constraintTop_toBottomOf="@+id/textViewValorTotal" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewValorValorTotal" />
 
     <TextView
         android:id="@+id/textViewRotuloComprador"
@@ -90,7 +90,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewValorData" />
 
     <TextView
-        android:id="@+id/textViewTipoLancamento"
+        android:id="@+id/textViewValorTipoLancamento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

@@ -51,10 +51,10 @@ public class LancamentoRecyclerViewAdapter extends RecyclerView.Adapter<Lancamen
             super(itemView);
 
             textViewValorDescricao = itemView.findViewById(R.id.textViewValorDescricao);
-            textViewValorTotal = itemView.findViewById(R.id.textViewValorTotal);
+            textViewValorTotal = itemView.findViewById(R.id.textViewValorValorTotal);
             textViewValorData = itemView.findViewById(R.id.textViewValorData);
             textViewValorComprador = itemView.findViewById(R.id.textViewValorComprador);
-            textViewTipoLancamento = itemView.findViewById(R.id.textViewTipoLancamento);
+            textViewTipoLancamento = itemView.findViewById(R.id.textViewValorTipoLancamento);
 
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
