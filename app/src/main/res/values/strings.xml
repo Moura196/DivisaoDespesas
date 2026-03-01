@@ -1,6 +1,8 @@
 <resources>
-<!--    Página de cadastro do Morador-->
-    <string name="app_cadastro">Cadastro de Morador</string>
+    <string name="app_name">Divisão Despesas Familiar</string>
+
+    <!--    Página de cadastro do Morador-->
+    <string name="page_cadastro_morador">Cadastro de Morador</string>
     <string name="nome">Nome</string>
     <string name="genero">Gênero</string>
     <string name="limpar">Limpar</string>
@@ -8,7 +10,6 @@
     <string name="nomeCompleto">Nome Completo</string>
     <string name="limpeza_das_entradas">As entradas foram limpas!</string>
     <string name="informar_um_nome">É preciso informar um nome.</string>
-    <string name="nomeValor">"Nome: "</string>
     <string name="radio_button_opcao_masculino">Masculino</string>
     <string name="radio_button_opcao_feminino">Feminino</string>
     <string name="faltou_selecionar_um_genero">Faltou selecionar um gênero</string>
@@ -18,8 +19,8 @@
     <string name="responsavel_pelas_contas">Responsável pelas contas</string>
     <string name="nao_responsavel">Não é responsável pelas contas</string>
 
-<!--    Página de listagem de Lançamentos-->
-    <string name="app_launcher">Listagem de Lançamentos</string>
+    <!--    Página de listagem de Lançamentos-->
+    <string name="page_listagem_lancamentos">Listagem de Lançamentos</string>
     <string name="morador_Jorge">Jorge</string>
     <string name="morador_Viviane">Viviane</string>
     <string name="morador_Gabriel">Gabriel</string>
@@ -33,5 +34,14 @@
     <string name="lancamento_com_descriao">"Lançamento com descrição "</string>
     <string name="foi_clicado">" foi clicado!"</string>
     <string name="recebeu_um_clique_longo">" recebeu um clique longo!"</string>
+
+    <!--    Página de cadastro de Lançamentos-->
+    <string name="page_cadastro_lancamento">Cadastro de Lancamento</string>
+    <string name="descricao_do_lancamento">Descrição do lançamento</string>
+    <string name="hint_valor_total">Valor Total do lançamento</string>
+    <string name="hint_data_lancamento">Data do laçamento (dd-mm-aaaa)</string>
+    <string name="informar_descricao">É preciso informar uma descrição para o lançamento.</string>
+    <string name="informar_valor_total">Informar um valor total válido</string>
+    <string name="informe_data_corretamente">Utilize a formatação correta para data</string>
 
 </resources>

@@ -78,4 +78,25 @@
         <item>1</item>
     </integer-array>
 
+    <integer-array name="genero_morador">
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
+
+    <integer-array name="grupo_familiar_morador">
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
+
+    <integer-array name="responsavel_contas_morador">
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </integer-array>
+
 </resources>
