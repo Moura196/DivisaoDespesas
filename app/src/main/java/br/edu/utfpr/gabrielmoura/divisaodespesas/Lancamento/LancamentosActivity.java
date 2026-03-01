@@ -77,43 +77,7 @@ public class LancamentosActivity extends AppCompatActivity {
     }
 
     private void popularListaLancamentos() {
-//        String[] descricao_lancamento = getResources().getStringArray(R.array.lancamentos_descricao);
-//        String[] valor_total_lancamento = getResources().getStringArray(R.array.lancamentos_valor_total);
-//        String[] data_lancamento = getResources().getStringArray(R.array.lancamentos_data);
-//        int[] morador_comprador_lancamento = getResources().getIntArray(R.array.lancamentos_morador_comprador);
-//        int[] tipo_lancamento = getResources().getIntArray(R.array.lancamentos_tipo_lancamento);
-
         listaLancamentos = new ArrayList<>();
-
-//        Lancamento lancamento;
-//        boolean tipo_lancamento_boolean;
-//        Date dataConvertida = null;
-//
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-dd-MM", Locale.getDefault());
-//        sdf.setLenient(false);
-//
-//        for (int count = 0; count < descricao_lancamento.length; count++) {
-//            tipo_lancamento_boolean = (tipo_lancamento[count] == 1 ? true : false);
-//
-//            // Convertendo a data de String para Date, considerando o formato "yyyy-dd-MM"
-//            String dataString = (data_lancamento[count] == null ? "" : data_lancamento[count].trim());
-//            if (!dataString.isEmpty()) {
-//                dataString = dataString.replace('/', '-');
-//                try {
-//                    dataConvertida = sdf.parse(dataString);
-//                } catch (ParseException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//            lancamento = new Lancamento(descricao_lancamento[count],
-//                    Double.valueOf(valor_total_lancamento[count]),
-//                    dataConvertida,
-//                    morador_comprador_lancamento[count],
-//                    tipo_lancamento_boolean);
-//
-//            listaLancamentos.add(lancamento);
-//        }
 
         lancamentoRecyclerViewAdapter = new LancamentoRecyclerViewAdapter(listaLancamentos, this, onItemClickListener);
         recyclerViewLancamentos.setAdapter(lancamentoRecyclerViewAdapter);
@@ -163,6 +127,5 @@ public class LancamentosActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CadastroLancamentoActivity.class);
 
         launcherNovoLancamento.launch(intent);
-
     }
 }
