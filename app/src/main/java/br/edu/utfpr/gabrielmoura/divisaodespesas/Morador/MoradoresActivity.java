@@ -1,4 +1,4 @@
-package br.edu.utfpr.gabrielmoura.divisaodespesas;
+package br.edu.utfpr.gabrielmoura.divisaodespesas.Morador;
 
 import android.os.Bundle;
 import android.widget.LinearLayout;
@@ -11,9 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.edu.utfpr.gabrielmoura.divisaodespesas.Morador.Genero;
-import br.edu.utfpr.gabrielmoura.divisaodespesas.Morador.Morador;
-import br.edu.utfpr.gabrielmoura.divisaodespesas.Morador.MoradorRecyclerViewAdapter;
+import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
 
 public class MoradoresActivity extends AppCompatActivity {
 

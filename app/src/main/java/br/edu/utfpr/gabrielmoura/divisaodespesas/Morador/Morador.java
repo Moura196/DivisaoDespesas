@@ -5,8 +5,8 @@ public class Morador {
     private Long id_morador;
     private String nome;
     private Genero genero;
-    private int grupo_familiar;
-    private boolean responsavel_contas;
+    private int grupo_familiar; //spinner listando os grupos familiares cadastrados
+    private boolean responsavel_contas; //checkbox identificando se o morador é responsável por pagar as contas
 
     public Morador(Long id_morador, String nome, Genero genero, int grupo_familiar, boolean responsavel_contas) {
         this.id_morador = id_morador;

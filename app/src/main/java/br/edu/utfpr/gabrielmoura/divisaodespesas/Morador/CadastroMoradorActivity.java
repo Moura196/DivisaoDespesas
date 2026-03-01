@@ -22,7 +22,7 @@ public class CadastroMoradorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cadastro_morador_activity);
+        setContentView(R.layout.activity_cadastro_morador);
 
         editTextNome = findViewById(R.id.editTextNome);
         radioGroupGenero = findViewById(R.id.radioGroupGenero);
