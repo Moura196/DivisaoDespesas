@@ -51,7 +51,41 @@ Ele elimina a necessidade de anotações em papel e cálculos manuais, fornecend
 - **ArrayList<Lancamento>**: armazenamento dos objetos instanciados.  
 - **Activity Principal (Launcher)**: Listagem de Lançamentos usando **RecyclerView**.  
 - **Adapter Customizado**: exibe dados de cada Lançamento.  
-- **Item Click**: Toast exibindo informações do Lançamento clicado.  
+- **Item Click**: Toast exibindo informações do Lançamento clicado.
+
+### Entrega 3
+- **Entidade Morador Expandida**:  
+  - `id_morador`  
+  - `nome`  
+  - `genero` (Enum)  
+  - `grupo_familiar` (spinner de grupos familiares)  
+  - `responsavel_contas` (checkbox → identifica morador responsável por pagar contas)  
+
+- **Entidade Lancamento Consolidada**:  
+  - `id_lancamento`  
+  - `descricao`  
+  - `valor_total`  
+  - `data`  
+  - `morador_comprador` (spinner listando moradores cadastrados)  
+  - `tipo_lancamento` (checkbox → true = conta de casa, false = compra de mercado)  
+
+- **CadastroMoradorActivity**: Activity com validação de entrada e formulário completo para registro de moradores.  
+
+- **CadastroLancamentoActivity**: Activity com validação de entrada (descrição, valor positivo, data em formato dd/MM/yyyy) e formulário completo para registro de lançamentos.  
+
+- **MoradoresActivity**: Listagem de Moradores usando **RecyclerView** com dados carregados a partir de `res/values/arrays.xml`.  
+
+- **LancamentosActivity**: Listagem de Lançamentos usando **RecyclerView** com listeners de clique simples e longo que exibem Toast com informações do lançamento.  
+
+- **Adapters Customizados**:  
+  - `MoradorRecyclerViewAdapter`: exibe dados de cada Morador na lista.  
+  - `LancamentoRecyclerViewAdapter`: exibe dados de cada Lançamento na lista com interface de listener para interações.  
+
+- **SobreActivity**: Tela "Sobre" do aplicativo acessível a partir da Activity principal.  
+
+- **Data Source**: Arrays em `res/values/arrays.xml` com dados simulados de moradores e lançamentos.  
+
+- **Navegação**: Menu de opções e botões para navegação entre Cadastros, Listagens e Sobre.  
 
 ---
 
@@ -97,4 +131,38 @@ It removes the need for paper notes and manual calculations, providing the exact
 - **ArrayList<Lancamento>**: stores instantiated objects.  
 - **Main Activity (Launcher)**: List of Lançamentos using **RecyclerView**.  
 - **Custom Adapter**: displays data for each Lançamento.  
-- **Item Click**: Toast showing details of the clicked Lançamento.  
+- **Item Click**: Toast showing details of the clicked Lançamento.
+
+### Delivery 3
+- **Expanded Morador Entity**:  
+  - `id_morador`  
+  - `nome`  
+  - `genero` (Enum)  
+  - `grupo_familiar` (spinner with family groups)  
+  - `responsavel_contas` (checkbox → identifies resident responsible for paying bills)  
+
+- **Consolidated Lancamento Entity**:  
+  - `id_lancamento`  
+  - `descricao`  
+  - `valor_total`  
+  - `data`  
+  - `morador_comprador` (spinner listing registered residents)  
+  - `tipo_lancamento` (checkbox → true = household bill, false = market purchase)  
+
+- **CadastroMoradorActivity**: Activity with input validation and complete form for resident registration.  
+
+- **CadastroLancamentoActivity**: Activity with input validation (description, positive value, date format dd/MM/yyyy) and complete form for expense entry.  
+
+- **MoradoresActivity**: Resident List using **RecyclerView** with data loaded from `res/values/arrays.xml`.  
+
+- **LancamentosActivity**: Expense List using **RecyclerView** with single and long click listeners that display Toast messages with expense information.  
+
+- **Custom Adapters**:  
+  - `MoradorRecyclerViewAdapter`: displays data for each resident in the list.  
+  - `LancamentoRecyclerViewAdapter`: displays data for each expense in the list with listener interface for interactions.  
+
+- **SobreActivity**: About screen accessible from the main Activity.  
+
+- **Data Source**: Arrays in `res/values/arrays.xml` with simulated resident and expense data.  
+
+- **Navigation**: Menu options and buttons for navigation between Registrations, Lists, and About.  
