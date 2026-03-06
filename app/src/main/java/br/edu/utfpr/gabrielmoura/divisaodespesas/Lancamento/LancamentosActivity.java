@@ -2,6 +2,8 @@ package br.edu.utfpr.gabrielmoura.divisaodespesas.Lancamento;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -10,6 +12,7 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -83,7 +86,7 @@ public class LancamentosActivity extends AppCompatActivity {
         recyclerViewLancamentos.setAdapter(lancamentoRecyclerViewAdapter);
     }
 
-    public void abrirSobre(View view) {
+    public void abrirSobre() {
         Intent intent = new Intent(this, SobreActivity.class);
 
         startActivity(intent);
@@ -123,9 +126,31 @@ public class LancamentosActivity extends AppCompatActivity {
                 }
             });
 
-    public void abrirCadastroLancamento(View view) {
+    public void abrirCadastroLancamento() {
         Intent intent = new Intent(this, CadastroLancamentoActivity.class);
 
         launcherNovoLancamento.launch(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.lancamentos_opcoes, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int idMenuItem = item.getItemId();
+
+        if (idMenuItem == R.id.menuItemAdicionar) {
+            abrirCadastroLancamento();
+            return true;
+        } else if (idMenuItem == R.id.menuItemSobre) {
+            abrirSobre();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+
     }
 }
