@@ -2,11 +2,11 @@ package br.edu.utfpr.gabrielmoura.divisaodespesas.Lancamento;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -30,9 +30,9 @@ public class LancamentosActivity extends AppCompatActivity {
     private RecyclerView recyclerViewLancamentos;
     private RecyclerView.LayoutManager layoutManager;
     private LancamentoRecyclerViewAdapter lancamentoRecyclerViewAdapter;
-    private LancamentoRecyclerViewAdapter.OnItemClickListener onItemClickListener;
     private List<Lancamento> listaLancamentos;
-    
+    private int posicaoItemSelecionado = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,37 +52,54 @@ public class LancamentosActivity extends AppCompatActivity {
                 )
         );
 
-        onItemClickListener = new LancamentoRecyclerViewAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Lancamento lancamento = listaLancamentos.get(position);
-
-                Toast.makeText(getApplicationContext(),
-                        getString(R.string.lancamento_com_descriao) +
-                                lancamento.getDescricao() +
-                                getString(R.string.foi_clicado),
-                        Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onItemLongClick(View view, int position) {
-                Lancamento lancamento = listaLancamentos.get(position);
-
-                Toast.makeText(getApplicationContext(),
-                        getString(R.string.lancamento_com_descriao) +
-                                lancamento.getDescricao() +
-                                getString(R.string.recebeu_um_clique_longo),
-                        Toast.LENGTH_LONG).show();
-            }
-        };
-        
         popularListaLancamentos();
+//        registerForContextMenu(recyclerViewLancamentos);
     }
 
     private void popularListaLancamentos() {
         listaLancamentos = new ArrayList<>();
 
-        lancamentoRecyclerViewAdapter = new LancamentoRecyclerViewAdapter(listaLancamentos, this, onItemClickListener);
+        lancamentoRecyclerViewAdapter = new LancamentoRecyclerViewAdapter(listaLancamentos, this);
+        lancamentoRecyclerViewAdapter.setOnCreateContextMenu(new LancamentoRecyclerViewAdapter.OnCreateContextMenu() {
+            @Override
+            public void onCreateContextMenu(
+                    ContextMenu menu,
+                    View view,
+                    ContextMenu.ContextMenuInfo menuInfo,
+                    int position,
+                    MenuItem.OnMenuItemClickListener menuItemClickListener) {
+                getMenuInflater().inflate(R.menu.lancamentos_item_selecionado, menu);
+
+                for (int i = 0; i < menu.size(); i++) {
+                    menu.getItem(i).setOnMenuItemClickListener(menuItemClickListener);
+                }
+            }
+        });
+
+        lancamentoRecyclerViewAdapter.setOnContextMenuClickListener(new LancamentoRecyclerViewAdapter.OnContextMenuClickListener() {
+            @Override
+            public boolean onContextMenuItemClick(MenuItem menuItem, int position) {
+                int idMenuItem = menuItem.getItemId();
+
+                if (idMenuItem == R.id.menuItemEditar) {
+                    editarLancamento(position);
+                    return true;
+                } else if (idMenuItem == R.id.menuItemExcluir) {
+                    excluirLancamento(position);
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+
+        lancamentoRecyclerViewAdapter.setOnItemClickListener(new LancamentoRecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                editarLancamento(position);
+            }
+        });
+
         recyclerViewLancamentos.setAdapter(lancamentoRecyclerViewAdapter);
     }
 
@@ -129,6 +146,8 @@ public class LancamentosActivity extends AppCompatActivity {
     public void abrirCadastroLancamento() {
         Intent intent = new Intent(this, CadastroLancamentoActivity.class);
 
+        intent.putExtra(CadastroLancamentoActivity.KEY_MODO, CadastroLancamentoActivity.MODO_CADASTRO);
+
         launcherNovoLancamento.launch(intent);
     }
 
@@ -153,4 +172,86 @@ public class LancamentosActivity extends AppCompatActivity {
         }
 
     }
+
+    public void excluirLancamento(int position) {
+        listaLancamentos.remove(position);
+
+        lancamentoRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    ActivityResultLauncher<Intent> launcherEditarLancamento = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == LancamentosActivity.RESULT_OK) {
+                        Intent intent = result.getData();
+
+                        if (intent != null) {
+                            Bundle bundle = intent.getExtras();
+                            if (bundle != null) {
+                                String descricao = bundle.getString(CadastroLancamentoActivity.KEY_DESCRICAO);
+                                Double valorTotal = bundle.getDouble(CadastroLancamentoActivity.KEY_VALOR_TOTAL);
+                                Date dataLancamento = (Date) bundle.getSerializable(CadastroLancamentoActivity.KEY_DATA_LANCAMENTO);
+                                int moradorComprador = bundle.getInt(CadastroLancamentoActivity.KEY_MORADOR_COMPRADOR);
+                                boolean tipoLancamento = bundle.getBoolean(CadastroLancamentoActivity.KEY_TIPO_LANCAMENTO);
+
+                                Lancamento lancamento = listaLancamentos.get(posicaoItemSelecionado);
+                                lancamento.setDescricao(descricao);
+                                lancamento.setValor_total(valorTotal);
+                                lancamento.setData(dataLancamento);
+                                lancamento.setMorador_comprador(moradorComprador);
+                                lancamento.setTipo_lancamento(tipoLancamento);
+
+                                posicaoItemSelecionado = -1;
+
+                                lancamentoRecyclerViewAdapter.notifyDataSetChanged();
+                            }
+                        }
+
+                        posicaoItemSelecionado = -1;
+                    }
+                }
+            });
+
+    private void editarLancamento(int position) {
+        posicaoItemSelecionado = position;
+
+        Lancamento lancamento = listaLancamentos.get(posicaoItemSelecionado);
+
+        Intent intentEdicao = new Intent(this, CadastroLancamentoActivity.class);
+        intentEdicao.putExtra(CadastroLancamentoActivity.KEY_MODO, CadastroLancamentoActivity.MODO_EDITAR);
+        intentEdicao.putExtra(CadastroLancamentoActivity.KEY_DESCRICAO, lancamento.getDescricao());
+        intentEdicao.putExtra(CadastroLancamentoActivity.KEY_VALOR_TOTAL, lancamento.getValor_total());
+        intentEdicao.putExtra(CadastroLancamentoActivity.KEY_DATA_LANCAMENTO, lancamento.getData());
+        intentEdicao.putExtra(CadastroLancamentoActivity.KEY_MORADOR_COMPRADOR, lancamento.getMorador_comprador());
+        intentEdicao.putExtra(CadastroLancamentoActivity.KEY_TIPO_LANCAMENTO, lancamento.isTipo_lancamento());
+
+        launcherEditarLancamento.launch(intentEdicao);
+    }
+
+//    @Override
+//    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+//        super.onCreateContextMenu(menu, v, menuInfo);
+//
+//        getMenuInflater().inflate(R.menu.lancamentos_item_selecionado, menu);
+//    }
+//
+//    @Override
+//    public boolean onContextItemSelected(@NonNull MenuItem item) {
+//        AdapterView.AdapterContextMenuInfo info;
+//        info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+//        int idMenuItem = item.getItemId();
+//
+//        if (idMenuItem == R.id.menuItemEditar) {
+//
+//            return true;
+//        } else if (idMenuItem == R.id.menuItemExcluir) {
+//            excluirLancamento(info.position);
+//            return true;
+//        } else {
+//            return super.onContextItemSelected(item);
+//        }
+//
+//    }
 }

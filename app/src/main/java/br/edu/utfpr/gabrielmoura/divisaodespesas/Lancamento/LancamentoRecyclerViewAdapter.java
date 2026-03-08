@@ -1,7 +1,9 @@
 package br.edu.utfpr.gabrielmoura.divisaodespesas.Lancamento;
 
 import android.content.Context;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -22,24 +24,40 @@ public class LancamentoRecyclerViewAdapter extends RecyclerView.Adapter<Lancamen
     private Context context;
     private String[] listaMoradores;
     private OnItemClickListener onItemClickListener;
+    private OnItemLongClickListener onItemLongClickListener;
+    private OnCreateContextMenu onCreateContextMenu;
+    private OnContextMenuClickListener onContextMenuClickListener;
 
-    public interface OnItemClickListener {
+    interface OnItemClickListener {
         void onItemClick(View view, int position);
+    }
 
+    interface OnItemLongClickListener {
         void onItemLongClick(View view, int position);
     }
 
-    public LancamentoRecyclerViewAdapter(List<Lancamento> listaLancamentos, Context context, OnItemClickListener listener) {
+    interface OnCreateContextMenu {
+        void onCreateContextMenu(ContextMenu menu,
+                                 View view,
+                                 ContextMenu.ContextMenuInfo menuInfo,
+                                 int position,
+                                 MenuItem.OnMenuItemClickListener menuItemClickListener);
+    }
+
+    interface OnContextMenuClickListener {
+        boolean onContextMenuItemClick(MenuItem item, int position);
+    }
+
+    public LancamentoRecyclerViewAdapter(List<Lancamento> listaLancamentos, Context context) {
         this.listaLancamentos = listaLancamentos;
         this.context = context;
-        this.onItemClickListener = listener;
 
         listaMoradores = context.getResources().getStringArray(R.array.morador_comprador_cadastrado);
     }
 
     public class LancamentoHolder
             extends RecyclerView.ViewHolder
-            implements View.OnClickListener, View.OnLongClickListener {
+            implements View.OnClickListener, View.OnLongClickListener, View.OnCreateContextMenuListener {
 
         public TextView textViewValorDescricao;
         public TextView textViewValorTotal;
@@ -58,30 +76,50 @@ public class LancamentoRecyclerViewAdapter extends RecyclerView.Adapter<Lancamen
 
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
+            itemView.setOnCreateContextMenuListener(this);
         }
 
         @Override
         public void onClick(View v) {
             if (onItemClickListener != null) {
-                int position = getAdapterPosition();
-                if (position != RecyclerView.NO_POSITION) {
-                    onItemClickListener.onItemClick(v, position);
-                }
+                onItemClickListener.onItemClick(v, getAbsoluteAdapterPosition());
             }
         }
 
         @Override
         public boolean onLongClick(View v) {
-            if (onItemClickListener != null) {
-                int position = getAdapterPosition();
-
-                if (position != RecyclerView.NO_POSITION) {
-                    onItemClickListener.onItemLongClick(v, position);
-                    return true;
-                }
+            if (onItemLongClickListener != null) {
+                onItemLongClickListener.onItemLongClick(v, getAbsoluteAdapterPosition());
+                return true;
             }
             return false;
         }
+
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            if (onCreateContextMenu != null) {
+                onCreateContextMenu.onCreateContextMenu(
+                        menu,
+                        v,
+                        menuInfo,
+                        getAbsoluteAdapterPosition(),
+                        onMenuItemClickListener);
+            }
+        }
+
+        MenuItem.OnMenuItemClickListener onMenuItemClickListener = new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(@NonNull MenuItem item) {
+                if (onContextMenuClickListener != null) {
+                    onContextMenuClickListener.onContextMenuItemClick(
+                            item,
+                            getAbsoluteAdapterPosition()
+                    );
+                    return true;
+                }
+                return false;
+            }
+        };
     }
 
     @NonNull
@@ -121,5 +159,37 @@ public class LancamentoRecyclerViewAdapter extends RecyclerView.Adapter<Lancamen
     @Override
     public int getItemCount() {
         return listaLancamentos.size();
+    }
+
+    public OnItemClickListener getOnItemClickListener() {
+        return onItemClickListener;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public OnItemLongClickListener getOnItemLongClickListener() {
+        return onItemLongClickListener;
+    }
+
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+        this.onItemLongClickListener = onItemLongClickListener;
+    }
+
+    public OnCreateContextMenu getOnCreateContextMenu() {
+        return onCreateContextMenu;
+    }
+
+    public void setOnCreateContextMenu(OnCreateContextMenu onCreateContextMenu) {
+        this.onCreateContextMenu = onCreateContextMenu;
+    }
+
+    public OnContextMenuClickListener getOnContextMenuClickListener() {
+        return onContextMenuClickListener;
+    }
+
+    public void setOnContextMenuClickListener(OnContextMenuClickListener onContextMenuClickListener) {
+        this.onContextMenuClickListener = onContextMenuClickListener;
     }
 }

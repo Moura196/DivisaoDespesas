@@ -59,5 +59,7 @@
     <string name="botao_sobre">Sobre</string>
     <string name="adicionar_lancamento">Adicionar</string>
     <string name="informar_morador_comprador">O morador comprador deve ser selecionado.</string>
+    <string name="menu_editar">Editar</string>
+    <string name="menu_excluir">Excluir</string>
 
 </resources>

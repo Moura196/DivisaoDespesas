@@ -27,11 +27,17 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
     public static final String KEY_DATA_LANCAMENTO = "KEY_DATA_LANCAMENTO";
     public static final String KEY_MORADOR_COMPRADOR = "KEY_MORADOR_COMPRADOR";
     public static final String KEY_TIPO_LANCAMENTO = "KEY_TIPO_LANCAMENTO";
+    public static final String KEY_MODO = "MODO";
+
+    public static final int MODO_CADASTRO = 0;
+    public static final int MODO_EDITAR = 1;
+
     private EditText editTextDescricao;
     private EditText editTextValorTotal;
     private EditText editTextDate;
     private Spinner spinnerMoradorComprador;
     private CheckBox checkBoxTipoLancamento;
+    private int modo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,34 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
         editTextDate = findViewById(R.id.editTextDate);
         spinnerMoradorComprador = findViewById(R.id.spinnerMoradorComprador);
         checkBoxTipoLancamento = findViewById(R.id.checkBoxTipoLancamento);
+
+        Intent intentAbertura = getIntent();
+
+        Bundle bundle = intentAbertura.getExtras();
+        if (bundle != null) {
+            modo = bundle.getInt(KEY_MODO);
+
+            if (modo == MODO_CADASTRO) {
+                setTitle("Novo Lançamento");
+            } else {
+                setTitle("Editar Lançamemento");
+
+                String descricao = bundle.getString(CadastroLancamentoActivity.KEY_DESCRICAO);
+                Double valorTotal = bundle.getDouble(CadastroLancamentoActivity.KEY_VALOR_TOTAL);
+                Date dataLancamento = (Date) bundle.getSerializable(CadastroLancamentoActivity.KEY_DATA_LANCAMENTO);
+                int moradorComprador = bundle.getInt(CadastroLancamentoActivity.KEY_MORADOR_COMPRADOR);
+                boolean tipoLancamento = bundle.getBoolean(CadastroLancamentoActivity.KEY_TIPO_LANCAMENTO);
+
+                editTextDescricao.setText(descricao);
+                editTextValorTotal.setText(String.valueOf(valorTotal));
+
+                SimpleDateFormat displayFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                editTextDate.setText(displayFormat.format(dataLancamento));
+
+                spinnerMoradorComprador.setSelection(moradorComprador);
+                checkBoxTipoLancamento.setChecked(tipoLancamento);
+            }
+        }
     }
 
     public void limparCampos() {
