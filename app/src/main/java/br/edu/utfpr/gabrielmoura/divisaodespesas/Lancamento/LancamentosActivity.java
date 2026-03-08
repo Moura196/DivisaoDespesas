@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -174,6 +175,8 @@ public class LancamentosActivity extends AppCompatActivity {
 
                                 listaLancamentos.add(lancamento);
 
+                                Collections.sort(listaLancamentos, Lancamento.ordenacaoCresceente);
+
                                 lancamentoRecyclerViewAdapter.notifyDataSetChanged();
                             }
                         }
@@ -243,6 +246,8 @@ public class LancamentosActivity extends AppCompatActivity {
                                 lancamento.setData(dataLancamento);
                                 lancamento.setMorador_comprador(moradorComprador);
                                 lancamento.setTipo_lancamento(tipoLancamento);
+
+                                Collections.sort(listaLancamentos, Lancamento.ordenacaoCresceente);
 
                                 lancamentoRecyclerViewAdapter.notifyDataSetChanged();
                             }

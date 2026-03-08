@@ -1,10 +1,17 @@
 package br.edu.utfpr.gabrielmoura.divisaodespesas.Lancamento;
 
+import java.util.Comparator;
 import java.util.Date;
 
 public class Lancamento  {
 
     private Long id_lancamento;
+    public static Comparator<Lancamento> ordenacaoCresceente = new Comparator<Lancamento>() {
+        @Override
+        public int compare(Lancamento o1, Lancamento o2) {
+            return o1.getData().compareTo(o2.getData());
+        }
+    };
     private String descricao;
     private Double valor_total;
     private Date data;

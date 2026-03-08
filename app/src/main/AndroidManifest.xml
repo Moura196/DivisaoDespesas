@@ -13,16 +13,20 @@
         android:theme="@style/Theme.ThemeStylesIons">
         <activity
             android:name=".Sobre.SobreActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Lancamento.CadastroLancamentoActivity"/>
         <activity
             android:name=".Lancamento.CadastroLancamentoActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Lancamento.LancamentosActivity"/>
         <activity
             android:name=".Morador.MoradoresActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Lancamento.LancamentosActivity"/>
         <activity
             android:name=".Lancamento.LancamentosActivity"
-            android:exported="true">
+            android:exported="true"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +35,8 @@
         </activity>
         <activity
             android:name=".Morador.CadastroMoradorActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Lancamento.LancamentosActivity"/>
     </application>
 
 </manifest>

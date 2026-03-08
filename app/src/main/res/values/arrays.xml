@@ -7,10 +7,10 @@
     </string-array>
 
     <string-array name="morador_comprador_cadastrado">
+        <item>@string/morador_Amanda</item>
+        <item>@string/morador_Gabriel</item>
         <item>@string/morador_Jorge</item>
         <item>@string/morador_Viviane</item>
-        <item>@string/morador_Gabriel</item>
-        <item>@string/morador_Amanda</item>
     </string-array>
 
     <string-array name="lancamentos_descricao">
