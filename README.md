@@ -87,6 +87,36 @@ Ele elimina a necessidade de anotações em papel e cálculos manuais, fornecend
 
 - **Navegação**: Menu de opções e botões para navegação entre Cadastros, Listagens e Sobre.  
 
+### Entrega 4
+- **ActionMode para Contexto**: Implementação de menu contextual com long-press.  
+
+- **Edição de Lançamentos**:  
+  - Clique simples no item da lista abre o formulário de edição pré-preenchido.  
+  - Após edição, a lista é atualizada e reordenada automaticamente.  
+
+- **Exclusão de Lançamentos**:  
+  - Long-press em um item ativa o **ActionMode** com visual destacado (background cinza).  
+  - Menu contextual exibe opções "Editar" e "Excluir" com ícones.  
+  - Exclusão remove o item da lista e atualiza a RecyclerView.  
+
+- **Menu de Ações (Action Menu)**:  
+  - Menu superior em **LancamentosActivity** com opções:  
+    - **Adicionar**: abre **CadastroLancamentoActivity** para novo lançamento.  
+    - **Sobre**: acessa **SobreActivity**.  
+  - Ícones visuais para melhor UX.  
+
+- **Ordenação Automática**:  
+  - Lançamentos são ordenados em **ordem crescente por data** usando `Comparator`.  
+  - Ordenação ocorre após adicionar ou editar um lançamento.  
+
+- **ActivityResultLauncher**:  
+  - Substituição de `startActivityForResult()` (deprecated) por **ActivityResultLauncher**.  
+  - Launchers separados para criação (`launcherNovoLancamento`) e edição (`launcherEditarLancamento`).  
+
+- **Validações e Feedback Visual**:  
+  - Item selecionado em long-press recebe destaque visual (background cinza).  
+  - RecyclerView desabilitada durante ActionMode para evitar múltiplas seleções.  
+
 ---
 
 ## 📱 About the Project (English)
@@ -165,4 +195,34 @@ It removes the need for paper notes and manual calculations, providing the exact
 
 - **Data Source**: Arrays in `res/values/arrays.xml` with simulated resident and expense data.  
 
-- **Navigation**: Menu options and buttons for navigation between Registrations, Lists, and About.  
+- **Navigation**: Menu options and buttons for navigation between Registrations, Lists, and About.
+
+### Delivery 4
+- **ActionMode for Context**: Context menu implementation with long-press interaction.  
+
+- **Edit Expenses (Lançamento)**:  
+  - Single click on list item opens pre-filled edit form.  
+  - After editing, list is updated and automatically re-sorted.  
+
+- **Delete Expenses**:  
+  - Long-press on an item activates **ActionMode** with visual highlight (gray background).  
+  - Context menu displays "Edit" and "Delete" options with icons.  
+  - Deletion removes the item from the list and updates RecyclerView.  
+
+- **Action Menu**:  
+  - Top menu in **LancamentosActivity** with options:  
+    - **Add**: opens **CadastroLancamentoActivity** for new expense entry.  
+    - **About**: accesses **SobreActivity**.  
+  - Visual icons for better UX.  
+
+- **Automatic Sorting**:  
+  - Expenses are sorted in **ascending order by date** using `Comparator`.  
+  - Sorting occurs after adding or editing an expense.  
+
+- **ActivityResultLauncher**:  
+  - Replacement of deprecated `startActivityForResult()` with **ActivityResultLauncher**.  
+  - Separate launchers for creation (`launcherNovoLancamento`) and editing (`launcherEditarLancamento`).  
+
+- **Validations and Visual Feedback**:  
+  - Selected item in long-press receives visual highlight (gray background).  
+  - RecyclerView disabled during ActionMode to prevent multiple selections.  
