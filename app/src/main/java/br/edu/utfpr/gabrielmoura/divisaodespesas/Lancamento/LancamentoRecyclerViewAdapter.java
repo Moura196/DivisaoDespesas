@@ -33,7 +33,7 @@ public class LancamentoRecyclerViewAdapter extends RecyclerView.Adapter<Lancamen
     }
 
     interface OnItemLongClickListener {
-        void onItemLongClick(View view, int position);
+        boolean onItemLongClick(View view, int position);
     }
 
     interface OnCreateContextMenu {

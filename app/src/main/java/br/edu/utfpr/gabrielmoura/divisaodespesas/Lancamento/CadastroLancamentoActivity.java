@@ -38,6 +38,7 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
     private Spinner spinnerMoradorComprador;
     private CheckBox checkBoxTipoLancamento;
     private int modo;
+    private Lancamento lancamentoOriginal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,8 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
                 Date dataLancamento = (Date) bundle.getSerializable(CadastroLancamentoActivity.KEY_DATA_LANCAMENTO);
                 int moradorComprador = bundle.getInt(CadastroLancamentoActivity.KEY_MORADOR_COMPRADOR);
                 boolean tipoLancamento = bundle.getBoolean(CadastroLancamentoActivity.KEY_TIPO_LANCAMENTO);
+
+                lancamentoOriginal = new Lancamento(descricao, valorTotal, dataLancamento, moradorComprador, tipoLancamento);
 
                 editTextDescricao.setText(descricao);
                 editTextValorTotal.setText(String.valueOf(valorTotal));
@@ -172,10 +175,22 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
             return;
         }
 
-
         boolean tipoLancamento = checkBoxTipoLancamento.isChecked();
 
+        if (modo == MODO_EDITAR &&
+            descricao.equalsIgnoreCase(lancamentoOriginal.getDescricao()) &&
+            valorTotal.equals(lancamentoOriginal.getValor_total()) &&
+            dataLancamento == lancamentoOriginal.getData() &&
+            moradorComprador == lancamentoOriginal.getMorador_comprador() &&
+            tipoLancamento == lancamentoOriginal.isTipo_lancamento()) {
+
+            setResult(CadastroLancamentoActivity.RESULT_CANCELED);
+            finish();
+            return;
+        }
+
         Intent intentResposta = new Intent();
+
         intentResposta.putExtra(KEY_DESCRICAO, descricao);
         intentResposta.putExtra(KEY_VALOR_TOTAL, valorTotal);
         intentResposta.putExtra(KEY_DATA_LANCAMENTO, dataLancamento);

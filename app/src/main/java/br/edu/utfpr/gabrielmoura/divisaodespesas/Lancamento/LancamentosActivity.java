@@ -1,9 +1,11 @@
 package br.edu.utfpr.gabrielmoura.divisaodespesas.Lancamento;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -14,6 +16,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ActionMode;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,6 +35,51 @@ public class LancamentosActivity extends AppCompatActivity {
     private LancamentoRecyclerViewAdapter lancamentoRecyclerViewAdapter;
     private List<Lancamento> listaLancamentos;
     private int posicaoItemSelecionado = -1;
+    private ActionMode actionMode;
+    private View viewSelecionada;
+    private Drawable backgroundDrawable;
+    private ActionMode.Callback actionModeCallBack = new ActionMode.Callback() {
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            MenuInflater inflate = mode.getMenuInflater();
+            inflate.inflate(R.menu.lancamentos_item_selecionado, menu);
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem menuItem) {
+            int idMenuItem = menuItem.getItemId();
+
+            if (idMenuItem == R.id.menuItemEditar) {
+                editarLancamento();
+                return true;
+            } else if (idMenuItem == R.id.menuItemExcluir) {
+                excluirLancamento();
+                mode.finish();
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            if (viewSelecionada != null) {
+                viewSelecionada.setBackground(backgroundDrawable);
+            }
+
+            actionMode = null;
+            viewSelecionada = null;
+            backgroundDrawable = null;
+
+            recyclerViewLancamentos.setEnabled(true);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,50 +101,38 @@ public class LancamentosActivity extends AppCompatActivity {
         );
 
         popularListaLancamentos();
-//        registerForContextMenu(recyclerViewLancamentos);
     }
 
     private void popularListaLancamentos() {
         listaLancamentos = new ArrayList<>();
 
         lancamentoRecyclerViewAdapter = new LancamentoRecyclerViewAdapter(listaLancamentos, this);
-        lancamentoRecyclerViewAdapter.setOnCreateContextMenu(new LancamentoRecyclerViewAdapter.OnCreateContextMenu() {
-            @Override
-            public void onCreateContextMenu(
-                    ContextMenu menu,
-                    View view,
-                    ContextMenu.ContextMenuInfo menuInfo,
-                    int position,
-                    MenuItem.OnMenuItemClickListener menuItemClickListener) {
-                getMenuInflater().inflate(R.menu.lancamentos_item_selecionado, menu);
-
-                for (int i = 0; i < menu.size(); i++) {
-                    menu.getItem(i).setOnMenuItemClickListener(menuItemClickListener);
-                }
-            }
-        });
-
-        lancamentoRecyclerViewAdapter.setOnContextMenuClickListener(new LancamentoRecyclerViewAdapter.OnContextMenuClickListener() {
-            @Override
-            public boolean onContextMenuItemClick(MenuItem menuItem, int position) {
-                int idMenuItem = menuItem.getItemId();
-
-                if (idMenuItem == R.id.menuItemEditar) {
-                    editarLancamento(position);
-                    return true;
-                } else if (idMenuItem == R.id.menuItemExcluir) {
-                    excluirLancamento(position);
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        });
 
         lancamentoRecyclerViewAdapter.setOnItemClickListener(new LancamentoRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                editarLancamento(position);
+                posicaoItemSelecionado = position;
+                editarLancamento();
+            }
+        });
+
+        lancamentoRecyclerViewAdapter.setOnItemLongClickListener(new LancamentoRecyclerViewAdapter.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(View view, int position) {
+                if (actionMode != null) {
+                    return false;
+                }
+
+                posicaoItemSelecionado = position;
+                viewSelecionada = view;
+                backgroundDrawable = view.getBackground();
+
+                view.setBackgroundColor(Color.LTGRAY);
+
+                recyclerViewLancamentos.setEnabled(false);
+                actionMode = startSupportActionMode(actionModeCallBack);
+
+                return true;
             }
         });
 
@@ -112,6 +148,7 @@ public class LancamentosActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> launcherNovoLancamento = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
+
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == LancamentosActivity.RESULT_OK) {
@@ -119,6 +156,7 @@ public class LancamentosActivity extends AppCompatActivity {
 
                         if (intent != null) {
                             Bundle bundle = intent.getExtras();
+
                             if (bundle != null) {
                                 String descricao = bundle.getString(CadastroLancamentoActivity.KEY_DESCRICAO);
                                 Double valorTotal = bundle.getDouble(CadastroLancamentoActivity.KEY_VALOR_TOTAL);
@@ -173,8 +211,8 @@ public class LancamentosActivity extends AppCompatActivity {
 
     }
 
-    public void excluirLancamento(int position) {
-        listaLancamentos.remove(position);
+    public void excluirLancamento() {
+        listaLancamentos.remove(posicaoItemSelecionado);
 
         lancamentoRecyclerViewAdapter.notifyDataSetChanged();
     }
@@ -182,6 +220,7 @@ public class LancamentosActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> launcherEditarLancamento = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
+
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == LancamentosActivity.RESULT_OK) {
@@ -189,6 +228,7 @@ public class LancamentosActivity extends AppCompatActivity {
 
                         if (intent != null) {
                             Bundle bundle = intent.getExtras();
+
                             if (bundle != null) {
                                 String descricao = bundle.getString(CadastroLancamentoActivity.KEY_DESCRICAO);
                                 Double valorTotal = bundle.getDouble(CadastroLancamentoActivity.KEY_VALOR_TOTAL);
@@ -197,30 +237,33 @@ public class LancamentosActivity extends AppCompatActivity {
                                 boolean tipoLancamento = bundle.getBoolean(CadastroLancamentoActivity.KEY_TIPO_LANCAMENTO);
 
                                 Lancamento lancamento = listaLancamentos.get(posicaoItemSelecionado);
+
                                 lancamento.setDescricao(descricao);
                                 lancamento.setValor_total(valorTotal);
                                 lancamento.setData(dataLancamento);
                                 lancamento.setMorador_comprador(moradorComprador);
                                 lancamento.setTipo_lancamento(tipoLancamento);
 
-                                posicaoItemSelecionado = -1;
-
                                 lancamentoRecyclerViewAdapter.notifyDataSetChanged();
                             }
                         }
+                    }
 
-                        posicaoItemSelecionado = -1;
+                    posicaoItemSelecionado = -1;
+
+                    if (actionMode != null) {
+                        actionMode.finish();
                     }
                 }
             });
 
-    private void editarLancamento(int position) {
-        posicaoItemSelecionado = position;
-
+    private void editarLancamento() {
         Lancamento lancamento = listaLancamentos.get(posicaoItemSelecionado);
 
         Intent intentEdicao = new Intent(this, CadastroLancamentoActivity.class);
+
         intentEdicao.putExtra(CadastroLancamentoActivity.KEY_MODO, CadastroLancamentoActivity.MODO_EDITAR);
+
         intentEdicao.putExtra(CadastroLancamentoActivity.KEY_DESCRICAO, lancamento.getDescricao());
         intentEdicao.putExtra(CadastroLancamentoActivity.KEY_VALOR_TOTAL, lancamento.getValor_total());
         intentEdicao.putExtra(CadastroLancamentoActivity.KEY_DATA_LANCAMENTO, lancamento.getData());
@@ -229,29 +272,4 @@ public class LancamentosActivity extends AppCompatActivity {
 
         launcherEditarLancamento.launch(intentEdicao);
     }
-
-//    @Override
-//    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-//        super.onCreateContextMenu(menu, v, menuInfo);
-//
-//        getMenuInflater().inflate(R.menu.lancamentos_item_selecionado, menu);
-//    }
-//
-//    @Override
-//    public boolean onContextItemSelected(@NonNull MenuItem item) {
-//        AdapterView.AdapterContextMenuInfo info;
-//        info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-//        int idMenuItem = item.getItemId();
-//
-//        if (idMenuItem == R.id.menuItemEditar) {
-//
-//            return true;
-//        } else if (idMenuItem == R.id.menuItemExcluir) {
-//            excluirLancamento(info.position);
-//            return true;
-//        } else {
-//            return super.onContextItemSelected(item);
-//        }
-//
-//    }
 }
