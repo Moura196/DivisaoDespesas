@@ -12,6 +12,13 @@ public class Lancamento  {
             return o1.getData().compareTo(o2.getData());
         }
     };
+
+    public static Comparator<Lancamento> ordenacaoDecresceente = new Comparator<Lancamento>() {
+        @Override
+        public int compare(Lancamento o1, Lancamento o2) {
+            return -1 * o1.getData().compareTo(o2.getData());
+        }
+    };
     private String descricao;
     private Double valor_total;
     private Date data;

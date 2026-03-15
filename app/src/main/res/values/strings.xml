@@ -62,5 +62,6 @@
     <string name="menu_editar">Editar</string>
     <string name="menu_excluir">Excluir</string>
     <string name="sugerir_morador_comprador">Sugerir Morador Comprador</string>
+    <string name="ordenacao">Ordenação</string>
 
 </resources>

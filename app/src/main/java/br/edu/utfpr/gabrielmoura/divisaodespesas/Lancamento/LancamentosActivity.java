@@ -1,6 +1,8 @@
 package br.edu.utfpr.gabrielmoura.divisaodespesas.Lancamento;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -36,10 +38,18 @@ public class LancamentosActivity extends AppCompatActivity {
     private LancamentoRecyclerViewAdapter lancamentoRecyclerViewAdapter;
     private List<Lancamento> listaLancamentos;
     private int posicaoItemSelecionado = -1;
+
     private ActionMode actionMode;
+
     private View viewSelecionada;
     private Drawable backgroundDrawable;
+
     public static final String ARQUIVO_PREFERENCIAS = "br.edu.utfpr.gabrielmoura.divisaodespesas.PREFERENCIAS";
+    public static final String KEY_ORDENACAO_CRESCENTE = "ORDENACAO_CRESCENTE";
+
+    private boolean ordenacaoCrescente = true;
+    private MenuItem menuItemOrdenacao;
+
     private ActionMode.Callback actionModeCallBack = new ActionMode.Callback() {
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
@@ -101,6 +111,8 @@ public class LancamentosActivity extends AppCompatActivity {
                         LinearLayout.VERTICAL
                 )
         );
+
+        lerPreferencias();
 
         popularListaLancamentos();
     }
@@ -176,9 +188,7 @@ public class LancamentosActivity extends AppCompatActivity {
 
                                 listaLancamentos.add(lancamento);
 
-                                Collections.sort(listaLancamentos, Lancamento.ordenacaoCresceente);
-
-                                lancamentoRecyclerViewAdapter.notifyDataSetChanged();
+                                ordenarLista();
                             }
                         }
                     }
@@ -196,7 +206,16 @@ public class LancamentosActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.lancamentos_opcoes, menu);
+
+        menuItemOrdenacao = menu.findItem(R.id.menuItemOrdenacao);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        atualizarIconeOrdenacao();
+
+        return true;
     }
 
     @Override
@@ -208,6 +227,11 @@ public class LancamentosActivity extends AppCompatActivity {
             return true;
         } else if (idMenuItem == R.id.menuItemSobre) {
             abrirSobre();
+            return true;
+        } else if (idMenuItem == R.id.menuItemOrdenacao) {
+            salvarPreferenciaOrdenacaoCrescente(!ordenacaoCrescente);
+            atualizarIconeOrdenacao();
+            ordenarLista();
             return true;
         } else {
             return super.onOptionsItemSelected(item);
@@ -248,9 +272,7 @@ public class LancamentosActivity extends AppCompatActivity {
                                 lancamento.setMorador_comprador(moradorComprador);
                                 lancamento.setTipo_lancamento(tipoLancamento);
 
-                                Collections.sort(listaLancamentos, Lancamento.ordenacaoCresceente);
-
-                                lancamentoRecyclerViewAdapter.notifyDataSetChanged();
+                                ordenarLista();
                             }
                         }
                     }
@@ -277,5 +299,39 @@ public class LancamentosActivity extends AppCompatActivity {
         intentEdicao.putExtra(CadastroLancamentoActivity.KEY_TIPO_LANCAMENTO, lancamento.isTipo_lancamento());
 
         launcherEditarLancamento.launch(intentEdicao);
+    }
+
+    private void atualizarIconeOrdenacao() {
+        if (ordenacaoCrescente) {
+            menuItemOrdenacao.setIcon(R.drawable.ic_action_ascending_order);
+        } else {
+            menuItemOrdenacao.setIcon(R.drawable.ic_action_descending_order);
+        }
+    }
+
+    private void lerPreferencias() {
+        SharedPreferences shared = getSharedPreferences(ARQUIVO_PREFERENCIAS, Context.MODE_PRIVATE);
+        ordenacaoCrescente = shared.getBoolean(KEY_ORDENACAO_CRESCENTE, ordenacaoCrescente);
+    }
+
+    private void salvarPreferenciaOrdenacaoCrescente(boolean novoValor) {
+        SharedPreferences shared = getSharedPreferences(ARQUIVO_PREFERENCIAS, Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = shared.edit();
+        editor.putBoolean(KEY_ORDENACAO_CRESCENTE, novoValor);
+        editor.commit();
+
+        ordenacaoCrescente = novoValor;
+    }
+
+    private void ordenarLista() {
+        if (ordenacaoCrescente) {
+            Collections.sort(listaLancamentos, Lancamento.ordenacaoCresceente);
+        } else {
+            Collections.sort(listaLancamentos, Lancamento.ordenacaoDecresceente);
+        }
+
+        lancamentoRecyclerViewAdapter.notifyDataSetChanged();
+
     }
 }
