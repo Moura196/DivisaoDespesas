@@ -61,5 +61,6 @@
     <string name="informar_morador_comprador">O morador comprador deve ser selecionado.</string>
     <string name="menu_editar">Editar</string>
     <string name="menu_excluir">Excluir</string>
+    <string name="sugerir_morador_comprador">Sugerir Morador Comprador</string>
 
 </resources>

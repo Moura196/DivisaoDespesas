@@ -1,6 +1,8 @@
 package br.edu.utfpr.gabrielmoura.divisaodespesas.Lancamento;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +30,8 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
     public static final String KEY_MORADOR_COMPRADOR = "KEY_MORADOR_COMPRADOR";
     public static final String KEY_TIPO_LANCAMENTO = "KEY_TIPO_LANCAMENTO";
     public static final String KEY_MODO = "MODO";
+    public static final String KEY_SUGERIR_MORADOR_COMPRADOR = "SUGERIR_MORADOR_COMPRADOR";
+    public static final String KEY_ULTIMO_MORADOR_COMPRADOR = "ULTIMO_MORADOR_COMPRADOR";
 
     public static final int MODO_CADASTRO = 0;
     public static final int MODO_EDITAR = 1;
@@ -39,6 +43,9 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
     private CheckBox checkBoxTipoLancamento;
     private int modo;
     private Lancamento lancamentoOriginal;
+
+    private boolean sugerirMoradorComprador = false;
+    private int ultimoMoradorComprador = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +59,8 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
         spinnerMoradorComprador = findViewById(R.id.spinnerMoradorComprador);
         checkBoxTipoLancamento = findViewById(R.id.checkBoxTipoLancamento);
 
+        lerPreferencias();
+
         Intent intentAbertura = getIntent();
 
         Bundle bundle = intentAbertura.getExtras();
@@ -60,6 +69,10 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
 
             if (modo == MODO_CADASTRO) {
                 setTitle("Novo Lançamento");
+
+                if (sugerirMoradorComprador) {
+                    spinnerMoradorComprador.setSelection(ultimoMoradorComprador);
+                }
             } else {
                 setTitle("Editar Lançamemento");
 
@@ -189,6 +202,8 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
             return;
         }
 
+        salvarUltimoMoradorComprador(moradorComprador);
+
         Intent intentResposta = new Intent();
 
         intentResposta.putExtra(KEY_DESCRICAO, descricao);
@@ -209,6 +224,14 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.menuItemSugerir);
+        item.setChecked(sugerirMoradorComprador);
+
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int idMenuItem = item.getItemId();
 
@@ -218,8 +241,52 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
         } else if (idMenuItem == R.id.menuItemLimpar) {
             limparCampos();
             return true;
+        } else if (idMenuItem == R.id.menuItemSugerir) {
+            boolean valor = !item.isChecked();
+
+            salvarSugerirMoradorComprador(valor);
+            item.setChecked(valor);
+
+            if (sugerirMoradorComprador) {
+                spinnerMoradorComprador.setSelection(ultimoMoradorComprador);
+            }
+
+            return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void lerPreferencias() {
+        SharedPreferences shared = getSharedPreferences(
+                LancamentosActivity.ARQUIVO_PREFERENCIAS,
+                Context.MODE_PRIVATE);
+
+        sugerirMoradorComprador = shared.getBoolean(KEY_SUGERIR_MORADOR_COMPRADOR, sugerirMoradorComprador);
+        ultimoMoradorComprador = shared.getInt(KEY_ULTIMO_MORADOR_COMPRADOR, ultimoMoradorComprador);
+    }
+
+    private void salvarSugerirMoradorComprador(boolean novoValor) {
+        SharedPreferences shared = getSharedPreferences(
+                LancamentosActivity.ARQUIVO_PREFERENCIAS,
+                Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = shared.edit();
+        editor.putBoolean(KEY_SUGERIR_MORADOR_COMPRADOR, novoValor);
+        editor.commit();
+
+        sugerirMoradorComprador = novoValor;
+    }
+
+    private void salvarUltimoMoradorComprador(int novoValor) {
+        SharedPreferences shared = getSharedPreferences(
+                LancamentosActivity.ARQUIVO_PREFERENCIAS,
+                Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = shared.edit();
+        editor.putInt(KEY_ULTIMO_MORADOR_COMPRADOR, novoValor);
+        editor.commit();
+
+        ultimoMoradorComprador = novoValor;
     }
 }
