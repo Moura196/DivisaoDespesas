@@ -1,69 +1,64 @@
 <resources>
-    <string name="app_name">Divisão Despesas Familiar</string>
 
     <!--    Página de cadastro do Morador-->
-    <string name="page_cadastro_morador">Cadastro de Morador</string>
-    <string name="nome">Nome</string>
-    <string name="genero">Gênero</string>
-    <string name="limpar">Limpar</string>
-    <string name="salvar">Salvar</string>
-    <string name="nomeCompleto">Nome Completo</string>
-    <string name="limpeza_das_entradas">As entradas foram limpas!</string>
-    <string name="informar_um_nome">É preciso informar um nome.</string>
-    <string name="radio_button_opcao_masculino">Masculino</string>
-    <string name="radio_button_opcao_feminino">Feminino</string>
-    <string name="faltou_selecionar_um_genero">Faltou selecionar um gênero</string>
-    <string name="grupo_familiar">Grupo familiar</string>
-    <string name="casal_1">Casal 1</string>
-    <string name="casal_2">Casal 2</string>
-    <string name="responsavel_pelas_contas">Responsável pelas contas</string>
-    <string name="nao_responsavel">Não é responsável pelas contas</string>
+    <string name="app_name">Family Expense Division</string>
+    <string name="page_cadastro_morador">Resident Registration</string>
+    <string name="nome">Name</string>
+    <string name="genero">Gender</string>
+    <string name="limpar">Clear</string>
+    <string name="salvar">Save</string>
+    <string name="nomeCompleto">Full Name</string>
+    <string name="limpeza_das_entradas">The entries have been cleared!</string>
+    <string name="informar_um_nome">A name must be provided.</string>
+    <string name="radio_button_opcao_masculino">Male</string>
+    <string name="radio_button_opcao_feminino">Female</string>
+    <string name="faltou_selecionar_um_genero">A gender selection is missing</string>
+    <string name="grupo_familiar">Family group</string>
+    <string name="casal_1">Couple 1</string>
+    <string name="casal_2">Couple 2</string>
+    <string name="responsavel_pelas_contas">Responsible for the bills</string>
+    <string name="nao_responsavel">Not responsible for the bills</string>
 
     <!--    Página de listagem de Lançamentos-->
-    <string name="page_listagem_lancamentos">Listagem de Lançamentos</string>
-    <string name="morador_Jorge">Jorge</string>
-    <string name="morador_Viviane">Viviane</string>
-    <string name="morador_Gabriel">Gabriel</string>
-    <string name="morador_Amanda">Amanda</string>
-    <string name="descricao_lancamento">"Descrição: "</string>
-    <string name="valor_total_lancamento">"Valor total: "</string>
-    <string name="data_lancamento">"Data: "</string>
-    <string name="morador_comprador_lancamento">"Morador: "</string>
-    <string name="tipo_conta_casa">Conta de casa</string>
-    <string name="tipo_conta_mercado">Mercado</string>
-    <string name="lancamento_com_descriao">"Lançamento com descrição "</string>
-    <string name="foi_clicado">" foi clicado!"</string>
-    <string name="recebeu_um_clique_longo">" recebeu um clique longo!"</string>
+    <string name="morador_Jorge" translatable="false">Jorge</string>
+    <string name="morador_Viviane" translatable="false">Viviane</string>
+    <string name="morador_Gabriel" translatable="false">Gabriel</string>
+    <string name="morador_Amanda" translatable="false">Amanda</string>
+    <string name="page_listagem_lancamentos">Transaction Listing</string>
+    <string name="descricao_lancamento">"Description: "</string>
+    <string name="valor_total_lancamento">"Total Value: "</string>
+    <string name="data_lancamento">"Date: "</string>
+    <string name="morador_comprador_lancamento">"Resident: "</string>
+    <string name="tipo_conta_casa">Household bill</string>
+    <string name="tipo_conta_mercado">Market</string>
+    <string name="lancamento_com_descriao">"Transaction with description "</string>
+    <string name="foi_clicado">" was clicked!"</string>
+    <string name="recebeu_um_clique_longo">" received a long click!"</string>
 
     <!--    Página de cadastro de Lançamentos-->
-    <string name="page_cadastro_lancamento">Cadastro de Lancamento</string>
-    <string name="descricao_do_lancamento">Descrição do lançamento</string>
-    <string name="hint_valor_total">Valor Total do lançamento</string>
-    <string name="hint_data_lancamento">Data do laçamento (dd-mm-aaaa)</string>
-    <string name="informar_descricao">É preciso informar uma descrição para o lançamento.</string>
-    <string name="informar_valor_total">Informar um valor total válido</string>
-    <string name="informe_data_corretamente">Utilize a formatação correta para data</string>
-    <string name="logo_da_aplicacao">Logo do aplicativo</string>
-    <string name="descricao_app_sobre">"Descrição: O aplicativo visa resolver o problema de gestão de despesas
-        em habitações compartilhadas por múltiplos núcleos familiares. Ele auxiliará o usuário a registrar
-        compras de mercado e contas fixas, permitindo classificar cada gasto de acordo com quem deve pagar:
-        se a despesa é comum a todos os moradores ou se é exclusiva de um dos casais. O software elimina a
-        necessidade de anotações em papel e cálculos manuais complexos ao final do mês, fornecendo o valor
-        exato que cada morador ou casal deve reembolsar ao comprador original."</string>
-    <string name="autor_sobre">Autor: Gabriel Mendes de Moura</string>
-    <string name="disciplina_sobre">Discplina: Desenvolvimento Java Para Dispositivos Móveis</string>
-    <string name="curso_sobre">Curso: Pós Especialização em Java</string>
-    <string name="logo_utfpr">Logo da UTFPR</string>
-    <string name="email_sobre">E-mail: gabrielmendesmoura@alunos.utfpr.edu.br</string>
-    <string name="faculdade_sobre">Universidade: UTFPR</string>
-    <string name="botao_sobre">Sobre</string>
-    <string name="adicionar_lancamento">Adicionar</string>
-    <string name="informar_morador_comprador">O morador comprador deve ser selecionado.</string>
-    <string name="menu_editar">Editar</string>
-    <string name="menu_excluir">Excluir</string>
-    <string name="sugerir_morador_comprador">Sugerir Morador Comprador</string>
-    <string name="ordenacao">Ordenação</string>
-    <string name="restaurar_padrao">Restaurar padrão</string>
-    <string name="configuracoes_restauradas_padroes">As configurações foram restauradas para os padrçoes iniciais!</string>
+    <string name="page_cadastro_lancamento">Transaction Registration</string>
+    <string name="descricao_do_lancamento">Transaction description</string>
+    <string name="hint_valor_total">Total transaction value</string>
+    <string name="hint_data_lancamento">Transaction date (dd-mm-yyyy)</string>
+    <string name="informar_descricao">A description for the transaction must be provided.</string>
+    <string name="informar_valor_total">Provide a valid total value</string>
+    <string name="informe_data_corretamente">Use the correct date format</string>
+    <string name="logo_da_aplicacao">Application logo</string>
+    <string name="descricao_app_sobre">"Description: The application aims to solve the problem of expense management in shared housing by multiple family units. It will help the user record market purchases and fixed bills, allowing classification of each expense according to who should pay: whether the expense is common to all residents or exclusive to one of the couples. The software eliminates the need for paper notes and complex manual calculations at the end of the month, providing the exact amount each resident or couple must reimburse to the original buyer."</string>
+    <string name="autor_sobre">Author: Gabriel Mendes de Moura</string>
+    <string name="disciplina_sobre">Subject: Java Development for Mobile Devices</string>
+    <string name="curso_sobre">Course: Postgraduate Specialization in Java</string>
+    <string name="logo_utfpr">UTFPR Logo</string>
+    <string name="email_sobre">Email: gabrielmendesmoura@alunos.utfpr.edu.br</string>
+    <string name="faculdade_sobre">University: UTFPR</string>
+    <string name="botao_sobre">About</string>
+    <string name="adicionar_lancamento">Add</string>
+    <string name="informar_morador_comprador">The purchasing resident must be selected!</string>
+    <string name="menu_editar">Edit</string>
+    <string name="menu_excluir">Delete</string>
+    <string name="sugerir_morador_comprador">Suggest Purchasing Resident</string>
+    <string name="ordenacao">Sorting</string>
+    <string name="restaurar_padrao">Restore default</string>
+    <string name="configuracoes_restauradas_padroes">The settings have been restored to the default values!</string>
 
 </resources>
