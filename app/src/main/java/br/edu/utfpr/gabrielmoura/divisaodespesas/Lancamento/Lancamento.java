@@ -6,14 +6,14 @@ import java.util.Date;
 public class Lancamento  {
 
     private Long id_lancamento;
-    public static Comparator<Lancamento> ordenacaoCresceente = new Comparator<Lancamento>() {
+    public static Comparator<Lancamento> ordenacaoCrescente = new Comparator<Lancamento>() {
         @Override
         public int compare(Lancamento o1, Lancamento o2) {
             return o1.getData().compareTo(o2.getData());
         }
     };
 
-    public static Comparator<Lancamento> ordenacaoDecresceente = new Comparator<Lancamento>() {
+    public static Comparator<Lancamento> ordenacaoDecrescente = new Comparator<Lancamento>() {
         @Override
         public int compare(Lancamento o1, Lancamento o2) {
             return -1 * o1.getData().compareTo(o2.getData());

@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -46,8 +47,9 @@ public class LancamentosActivity extends AppCompatActivity {
 
     public static final String ARQUIVO_PREFERENCIAS = "br.edu.utfpr.gabrielmoura.divisaodespesas.PREFERENCIAS";
     public static final String KEY_ORDENACAO_CRESCENTE = "ORDENACAO_CRESCENTE";
+    public static final boolean PADRAO_INICIAL_ORDENACAO_CRESCENTE = true;
 
-    private boolean ordenacaoCrescente = true;
+    private boolean ordenacaoCrescente = PADRAO_INICIAL_ORDENACAO_CRESCENTE;
     private MenuItem menuItemOrdenacao;
 
     private ActionMode.Callback actionModeCallBack = new ActionMode.Callback() {
@@ -233,8 +235,18 @@ public class LancamentosActivity extends AppCompatActivity {
             atualizarIconeOrdenacao();
             ordenarLista();
             return true;
+        } else if (idMenuItem == R.id.menuItemRestaurar) {
+            restaurarPadroes();
+            atualizarIconeOrdenacao();
+            ordenarLista();
+
+            Toast.makeText(this,
+                    R.string.configuracoes_restauradas_padroes,
+                    Toast.LENGTH_LONG).show();
+
+            return true;
         } else {
-            return super.onOptionsItemSelected(item);
+                return super.onOptionsItemSelected(item);
         }
 
     }
@@ -303,9 +315,9 @@ public class LancamentosActivity extends AppCompatActivity {
 
     private void atualizarIconeOrdenacao() {
         if (ordenacaoCrescente) {
-            menuItemOrdenacao.setIcon(R.drawable.ic_action_ascending_order);
+            menuItemOrdenacao.setIcon(R.drawable.ic_action_crescente_order);
         } else {
-            menuItemOrdenacao.setIcon(R.drawable.ic_action_descending_order);
+            menuItemOrdenacao.setIcon(R.drawable.ic_action_decrescente_order);
         }
     }
 
@@ -326,12 +338,21 @@ public class LancamentosActivity extends AppCompatActivity {
 
     private void ordenarLista() {
         if (ordenacaoCrescente) {
-            Collections.sort(listaLancamentos, Lancamento.ordenacaoCresceente);
+            Collections.sort(listaLancamentos, Lancamento.ordenacaoCrescente);
         } else {
-            Collections.sort(listaLancamentos, Lancamento.ordenacaoDecresceente);
+            Collections.sort(listaLancamentos, Lancamento.ordenacaoDecrescente);
         }
 
         lancamentoRecyclerViewAdapter.notifyDataSetChanged();
+    }
 
+    private void restaurarPadroes() {
+        SharedPreferences shared = getSharedPreferences(ARQUIVO_PREFERENCIAS, Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = shared.edit();
+        editor.clear();
+        editor.commit();
+
+        ordenacaoCrescente = PADRAO_INICIAL_ORDENACAO_CRESCENTE;
     }
 }

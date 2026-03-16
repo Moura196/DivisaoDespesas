@@ -9,9 +9,12 @@
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/menuItemOrdenacao"
-        android:icon="@drawable/ic_action_ascending_order"
+        android:icon="@drawable/ic_action_decrescente_order"
         android:title="@string/ordenacao"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menuItemRestaurar"
+        android:title="@string/restaurar_padrao" />
     <item
         android:id="@+id/menuItemSobre"
         android:title="@string/botao_sobre" />

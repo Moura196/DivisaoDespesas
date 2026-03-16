@@ -63,5 +63,7 @@
     <string name="menu_excluir">Excluir</string>
     <string name="sugerir_morador_comprador">Sugerir Morador Comprador</string>
     <string name="ordenacao">Ordenação</string>
+    <string name="restaurar_padrao">Restaurar padrão</string>
+    <string name="configuracoes_restauradas_padroes">As configurações foram restauradas para os padrçoes iniciais!</string>
 
 </resources>
