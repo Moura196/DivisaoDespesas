@@ -2,8 +2,8 @@
 <resources>
 
     <string-array name="grupo_familiar">
-        <item>@string/casal_1</item>
-        <item>@string/casal_2</item>
+        <item>@string/casal_Jorge_Viviane</item>
+        <item>@string/casal_Gabriel_Amanda</item>
     </string-array>
 
     <string-array name="morador_comprador_cadastrado">

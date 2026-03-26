@@ -14,8 +14,8 @@
     <string name="radio_button_opcao_feminino">Female</string>
     <string name="faltou_selecionar_um_genero">A gender selection is missing</string>
     <string name="grupo_familiar">Family group</string>
-    <string name="casal_1">Couple 1</string>
-    <string name="casal_2">Couple 2</string>
+    <string name="casal_Jorge_Viviane">Couple 1</string>
+    <string name="casal_Gabriel_Amanda">Couple 2</string>
     <string name="responsavel_pelas_contas">Responsible for the bills</string>
     <string name="nao_responsavel">Not responsible for the bills</string>
 
@@ -60,5 +60,16 @@
     <string name="ordenacao">Sorting</string>
     <string name="restaurar_padrao">Restore default</string>
     <string name="configuracoes_restauradas_padroes">The settings have been restored to the default values!</string>
+    <string name="itens_listing">Itens Listing</string>
+    <string name="rotulo_quantidade_item">Quantidade:</string>
+    <string name="valor_unitario">Valor Unitário:</string>
+    <string name="rotulo_desconto">Valor de Desconto:</string>
+    <string name="tipo_rateio_casal">Será dividido por um casal</string>
+    <string name="adicionar_item">Adicionar Item</string>
+    <string name="cadastro_de_item">Cadastro de Item</string>
+    <string name="descricao_do_item">Descrição do Item</string>
+    <string name="quantidade_do_item">Quantidade do Item</string>
+    <string name="valor_unitario_item">Valor Unitário do Item</string>
+    <string name="valor_de_desconto">Valor de Desconto do Item</string>
 
 </resources>

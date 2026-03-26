@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -41,6 +44,7 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
     private EditText editTextDate;
     private Spinner spinnerMoradorComprador;
     private CheckBox checkBoxTipoLancamento;
+    private FloatingActionButton fabAddItem;
     private int modo;
     private Lancamento lancamentoOriginal;
 
@@ -58,6 +62,20 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
         editTextDate = findViewById(R.id.editTextDate);
         spinnerMoradorComprador = findViewById(R.id.spinnerMoradorComprador);
         checkBoxTipoLancamento = findViewById(R.id.checkBoxTipoLancamento);
+        fabAddItem = findViewById(R.id.fabAddItem);
+
+        fabAddItem.setVisibility(
+                checkBoxTipoLancamento.isChecked() ?
+                        View.GONE :
+                        View.VISIBLE);
+
+        checkBoxTipoLancamento.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                fabAddItem.setVisibility(View.GONE);
+            } else {
+                fabAddItem.setVisibility(View.VISIBLE);
+            }
+        });
 
         lerPreferencias();
 
@@ -105,7 +123,6 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
 
         editTextDescricao.requestFocus();
 
-        // VERIFICAR REQUISITOS DO PROFESSOR
         Toast.makeText(this,
                 R.string.limpeza_das_entradas,
                 Toast.LENGTH_LONG).show();
@@ -250,6 +267,9 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
             if (sugerirMoradorComprador) {
                 spinnerMoradorComprador.setSelection(ultimoMoradorComprador);
             }
+
+            return true;
+        } else if (idMenuItem == R.id.fabAddItem) {
 
             return true;
         } else {

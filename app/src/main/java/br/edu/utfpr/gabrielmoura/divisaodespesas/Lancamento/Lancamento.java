@@ -2,10 +2,20 @@ package br.edu.utfpr.gabrielmoura.divisaodespesas.Lancamento;
 
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
+
+import br.edu.utfpr.gabrielmoura.divisaodespesas.Item.Item;
 
 public class Lancamento  {
 
     private Long id_lancamento;
+    private String descricao;
+    private Double valor_total;
+    private Date data;
+    private int morador_comprador; // spinner listando os moradores cadastrados
+    private boolean tipo_lancamento; // checkbox identificando se é uma conta de casa ou compra de mercado
+    private List<Item> itens;
+
     public static Comparator<Lancamento> ordenacaoCrescente = new Comparator<Lancamento>() {
         @Override
         public int compare(Lancamento o1, Lancamento o2) {
@@ -19,12 +29,6 @@ public class Lancamento  {
             return -1 * o1.getData().compareTo(o2.getData());
         }
     };
-    private String descricao;
-    private Double valor_total;
-    private Date data;
-    private int morador_comprador; // spinner listando os moradores cadastrados
-    private boolean tipo_lancamento; // checkbox identificando se é uma conta de casa ou compra de mercado
-
     public Lancamento(String descricao, Double valor_total, Date data, int morador_comprador, boolean tipo_lancamento) {
         this.descricao = descricao;
         this.valor_total = valor_total;
@@ -81,6 +85,14 @@ public class Lancamento  {
         this.tipo_lancamento = tipo_lancamento;
     }
 
+    public List<Item> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<Item> itens) {
+        this.itens = itens;
+    }
+
     @Override
     public String toString() {
         return id_lancamento + '\n' +
@@ -88,6 +100,7 @@ public class Lancamento  {
                 valor_total + '\n' +
                 data + '\n' +
                 morador_comprador + '\n' +
-                tipo_lancamento;
+                tipo_lancamento + '\n' +
+                itens;
     }
 }
