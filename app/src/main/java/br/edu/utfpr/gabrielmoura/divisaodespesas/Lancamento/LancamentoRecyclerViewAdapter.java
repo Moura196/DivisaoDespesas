@@ -141,7 +141,7 @@ public class LancamentoRecyclerViewAdapter extends RecyclerView.Adapter<Lancamen
         // Formatando a data para exibir como dd-MM-yyyy
         Date data = lancamento.getData();
         if (data != null) {
-            SimpleDateFormat displayFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+            SimpleDateFormat displayFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
             holder.textViewValorData.setText(displayFormat.format(data));
         } else {
             holder.textViewValorData.setText("");

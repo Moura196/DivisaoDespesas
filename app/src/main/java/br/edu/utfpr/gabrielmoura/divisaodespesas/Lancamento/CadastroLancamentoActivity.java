@@ -13,16 +13,26 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import br.edu.utfpr.gabrielmoura.divisaodespesas.CadastroItemActivity;
+import br.edu.utfpr.gabrielmoura.divisaodespesas.Item.Item;
+import br.edu.utfpr.gabrielmoura.divisaodespesas.Item.ItemRecyclerViewAdapter;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
 
 public class CadastroLancamentoActivity extends AppCompatActivity {
@@ -45,11 +55,35 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
     private Spinner spinnerMoradorComprador;
     private CheckBox checkBoxTipoLancamento;
     private FloatingActionButton fabAddItem;
+    private RecyclerView recyclerViewItens;
+    private ItemRecyclerViewAdapter itemRecyclerViewAdapter;
     private int modo;
     private Lancamento lancamentoOriginal;
 
     private boolean sugerirMoradorComprador = false;
     private int ultimoMoradorComprador = 0;
+
+    private ArrayList<Item> listaItens = new ArrayList<>();
+
+    private ActivityResultLauncher<Intent> launcherItens = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        Intent data = result.getData();
+
+                        if (data.hasExtra("LISTA_ITENS")) {
+                            listaItens = (ArrayList<Item>) data.getSerializableExtra("LISTA_ITENS");
+
+                            itemRecyclerViewAdapter = new ItemRecyclerViewAdapter(listaItens, CadastroLancamentoActivity.this);
+
+                            recyclerViewItens.setAdapter(itemRecyclerViewAdapter);
+                        }
+                    }
+                }
+            }
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +97,10 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
         spinnerMoradorComprador = findViewById(R.id.spinnerMoradorComprador);
         checkBoxTipoLancamento = findViewById(R.id.checkBoxTipoLancamento);
         fabAddItem = findViewById(R.id.fabAddItem);
+        recyclerViewItens = findViewById(R.id.recyclerViewItens);
+        recyclerViewItens.setLayoutManager(new LinearLayoutManager(this));
+        itemRecyclerViewAdapter = new ItemRecyclerViewAdapter(listaItens, this);
+        recyclerViewItens.setAdapter(itemRecyclerViewAdapter);
 
         fabAddItem.setVisibility(
                 checkBoxTipoLancamento.isChecked() ?
@@ -112,6 +150,12 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
                 checkBoxTipoLancamento.setChecked(tipoLancamento);
             }
         }
+
+        fabAddItem.setOnClickListener(v -> {
+            Intent intent = new Intent(this, CadastroItemActivity.class);
+            intent.putExtra("LISTA_ITENS", listaItens);
+            launcherItens.launch(intent);
+        });
     }
 
     public void limparCampos() {
@@ -267,9 +311,6 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
             if (sugerirMoradorComprador) {
                 spinnerMoradorComprador.setSelection(ultimoMoradorComprador);
             }
-
-            return true;
-        } else if (idMenuItem == R.id.fabAddItem) {
 
             return true;
         } else {

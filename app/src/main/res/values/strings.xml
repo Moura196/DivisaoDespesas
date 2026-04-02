@@ -14,8 +14,8 @@
     <string name="radio_button_opcao_feminino">Female</string>
     <string name="faltou_selecionar_um_genero">A gender selection is missing</string>
     <string name="grupo_familiar">Family group</string>
-    <string name="casal_Jorge_Viviane">Couple 1</string>
-    <string name="casal_Gabriel_Amanda">Couple 2</string>
+    <string name="casal_Jorge_Viviane">Couple J/V</string>
+    <string name="casal_Gabriel_Amanda">Couple G/A</string>
     <string name="responsavel_pelas_contas">Responsible for the bills</string>
     <string name="nao_responsavel">Not responsible for the bills</string>
 
@@ -71,5 +71,13 @@
     <string name="quantidade_do_item">Quantidade do Item</string>
     <string name="valor_unitario_item">Valor Unitário do Item</string>
     <string name="valor_de_desconto">Valor de Desconto do Item</string>
+    <string name="descricao_do_item_obrigatoria">A descrição do item é obrigatória!</string>
+    <string name="informar_um_quantidade_valida_para_item">Informar um1 quantidade válida para o item!</string>
+    <string name="informe_valor_unitario_item">Valor unitário deve ser válido para o item!</string>
+    <string name="informe_valor_desconto_item">Valor de desconto deve ser válido para o item!</string>
+    <string name="informar_casal_para_rateio">O casal para o rateio deve ser selecionado!</string>
+    <string name="valor_total_invalido">O valor total do item é calculado a partir do valor unitário, quantidade e desconto. Por favor, verifique o preenchimento correto destes campos!</string>
+    <string name="salvar_item">Salvar Item</string>
+    <string name="limpar_item">Limpar Item</string>
 
 </resources>

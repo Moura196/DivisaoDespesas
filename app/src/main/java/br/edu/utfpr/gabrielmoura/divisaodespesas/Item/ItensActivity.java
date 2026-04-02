@@ -11,14 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.edu.utfpr.gabrielmoura.divisaodespesas.Lancamento.Lancamento;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
 
 public class ItensActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewItens;
     private RecyclerView.LayoutManager layoutManager;
-    private List<Lancamento> listaItens;
+    private List<Item> listaItens;
     private ItemRecyclerViewAdapter itemRecyclerViewAdapter;
 
     @Override

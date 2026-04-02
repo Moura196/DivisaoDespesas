@@ -15,8 +15,8 @@
     <string name="radio_button_opcao_feminino">Feminino</string>
     <string name="faltou_selecionar_um_genero">Faltou selecionar um gênero</string>
     <string name="grupo_familiar">Grupo familiar</string>
-    <string name="casal_Jorge_Viviane">Casal 1</string>
-    <string name="casal_Gabriel_Amanda">Casal 2</string>
+    <string name="casal_Jorge_Viviane">Casal J/V</string>
+    <string name="casal_Gabriel_Amanda">Casal G/A</string>
     <string name="responsavel_pelas_contas">Responsável pelas contas</string>
     <string name="nao_responsavel">Não é responsável pelas contas</string>
 

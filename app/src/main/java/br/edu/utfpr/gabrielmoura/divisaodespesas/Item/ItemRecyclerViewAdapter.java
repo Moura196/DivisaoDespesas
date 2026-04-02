@@ -1,25 +1,22 @@
 package br.edu.utfpr.gabrielmoura.divisaodespesas.Item;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
-
-import br.edu.utfpr.gabrielmoura.divisaodespesas.Lancamento.Lancamento;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
 
 public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerViewAdapter.ItemHolder> {
 
-    private List<Lancamento> listaItens;
+    private List<Item> listaItens;
     private Context context;
     private String[] listaCasal;
 
-    public ItemRecyclerViewAdapter(List<Lancamento> listaItens, Context context) {
+    public ItemRecyclerViewAdapter(List<Item> listaItens, Context context) {
         this.listaItens = listaItens;
         this.context = context;
 
@@ -50,18 +47,32 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
 
     @NonNull
     @Override
-    public ItemRecyclerViewAdapter.ItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    public ItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.linha_lista_itens, parent, false);
+
+        return new ItemHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemRecyclerViewAdapter.ItemHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ItemHolder holder, int position) {
+        Item item = listaItens.get(position);
 
+        holder.textViewValorDescricaoItem.setText(item.getDescricao());
+        holder.textViewValorQuant.setText(String.valueOf(item.getQuantidade()));
+        holder.textViewValorUnitario.setText(String.format("%.2f", item.getValor_unitario()));
+        holder.textViewValorDesconto.setText(String.format("%.2f", item.getValor_desconto()));
+        holder.textViewValorTotalItem.setText(String.format("%.2f", item.getValor_total()));
+        if (item.isRateio_casal() && item.getCasal_rateio() >= 0 && item.getCasal_rateio() < listaCasal.length) {
+            holder.textViewValorCasalRateio.setText(listaCasal[item.getCasal_rateio()]);
+        } else {
+            holder.textViewValorCasalRateio.setText("");
+        }
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return listaItens.size();
     }
 
 }

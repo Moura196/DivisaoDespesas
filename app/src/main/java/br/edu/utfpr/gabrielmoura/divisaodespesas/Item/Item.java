@@ -62,7 +62,7 @@ public class Item {
     }
 
     public Double getValor_total() {
-        return valor_total;
+        return (valor_unitario * quantidade) - valor_desconto;
     }
 
     public void setValor_total(Double valor_total) {
