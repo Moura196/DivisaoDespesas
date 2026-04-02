@@ -47,6 +47,8 @@ public class ItensActivity extends AppCompatActivity {
 
         itemRecyclerViewAdapter = new ItemRecyclerViewAdapter(listaItens, this);
 
+        itemRecyclerViewAdapter.setO
+
         recyclerViewItens.setAdapter(itemRecyclerViewAdapter);
     }
 }

@@ -29,7 +29,7 @@ public class CadastroItemActivity extends AppCompatActivity {
     public static final String KEY_CASAL_RATEIO_ITEM = "KEY_CASAL_RATEIO_ITEM";
 
     public static final String KEY_MODO = "MODO";
-    public static final int MODO_CADASTRAR = 0;
+    public static final int MODO_CADASTRO = 0;
     public static final int MODO_EDITAR = 1;
 
     private EditText editTextDescricaoItem;
@@ -85,6 +85,47 @@ public class CadastroItemActivity extends AppCompatActivity {
         editTextQuantidade.addTextChangedListener(watcher);
         editTextNumDecUnitario.addTextChangedListener(watcher);
         editTextNumDecDesconto.addTextChangedListener(watcher);
+
+        Intent intentAbertura = getIntent();
+
+        Bundle bundle = intentAbertura.getExtras();
+        if (bundle != null) {
+            modo = bundle.getInt(KEY_MODO);
+
+            if (modo == MODO_CADASTRO) {
+                setTitle("Novo Item");
+            } else {
+                setTitle("Editar Item");
+
+                String descricao = bundle.getString(CadastroItemActivity.KEY_DESCRICAO_ITEM);
+                int quantidade = bundle.getInt(CadastroItemActivity.KEY_QUANTIDADE_ITEM);
+                Double valorUnitario = bundle.getDouble(CadastroItemActivity.KEY_VALOR_UNITARIO_ITEM);
+                Double valorDesconto = bundle.getDouble(CadastroItemActivity.KEY_VALOR_DESCONTO_ITEM);
+                Double valorTotal = bundle.getDouble(CadastroItemActivity.KEY_VALOR_TOTAL_ITEM);
+                boolean tipoRateio = bundle.getBoolean(CadastroItemActivity.KEY_TIPO_RATEIO_ITEM);
+                int casalRateio = bundle.getInt(CadastroItemActivity.KEY_CASAL_RATEIO_ITEM);
+
+                itemOriginal = new Item(
+                        descricao,
+                        quantidade,
+                        valorUnitario,
+                        valorDesconto,
+                        valorTotal,
+                        tipoRateio,
+                        casalRateio);
+
+                editTextDescricaoItem.setText(descricao);
+                editTextQuantidade.setText(String.valueOf(quantidade));
+                editTextNumDecUnitario.setText(String.format("%.2f", valorUnitario));
+                editTextNumDecDesconto.setText(String.format("%.2f", valorDesconto));
+                editTextNumDecTotal.setText(String.format("%.2f", valorTotal));
+                checkBoxTipoRateio.setChecked(tipoRateio);
+
+                if (tipoRateio) {
+                    spinnerCasalRateio.setSelection(casalRateio);
+                }
+            }
+        }
     }
 
     private void updateValorTotal() {

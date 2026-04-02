@@ -46,6 +46,14 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
     public static final String KEY_SUGERIR_MORADOR_COMPRADOR = "SUGERIR_MORADOR_COMPRADOR";
     public static final String KEY_ULTIMO_MORADOR_COMPRADOR = "ULTIMO_MORADOR_COMPRADOR";
 
+    public static final String KEY_DESCRICAO_ITEM = "KEY_DESCRICAO_ITEM";
+    public static final String KEY_QUANTIDADE_ITEM = "KEY_QUANTIDADE_ITEM";
+    public static final String KEY_VALOR_UNITARIO_ITEM = "KEY_VALOR_UNITARIO_ITEM";
+    public static final String KEY_VALOR_DESCONTO_ITEM = "KEY_VALOR_DESCONTO_ITEM";
+    public static final String KEY_VALOR_TOTAL_ITEM = "KEY_VALOR_TOTAL_ITEM";
+    public static final String KEY_TIPO_RATEIO_ITEM = "KEY_TIPO_RATEIO_ITEM";
+    public static final String KEY_CASAL_RATEIO_ITEM = "KEY_CASAL_RATEIO_ITEM";
+
     public static final int MODO_CADASTRO = 0;
     public static final int MODO_EDITAR = 1;
 
@@ -65,21 +73,46 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
 
     private ArrayList<Item> listaItens = new ArrayList<>();
 
-    private ActivityResultLauncher<Intent> launcherItens = registerForActivityResult(
+    private ActivityResultLauncher<Intent> launcherNovoItem = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
+
                 @Override
                 public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                        Intent data = result.getData();
+                    if (result.getResultCode() == CadastroLancamentoActivity.RESULT_OK &&
+                            result.getData() != null) {
+                        Intent intent = result.getData();
 
-                        if (data.hasExtra("LISTA_ITENS")) {
-                            listaItens = (ArrayList<Item>) data.getSerializableExtra("LISTA_ITENS");
+                        Bundle bundle = intent.getExtras();
 
-                            itemRecyclerViewAdapter = new ItemRecyclerViewAdapter(listaItens, CadastroLancamentoActivity.this);
+                        if (bundle != null) {
+                            String descricaoItem = bundle.getString(KEY_DESCRICAO_ITEM);
+                            int quantidadeItem = bundle.getInt(KEY_QUANTIDADE_ITEM);
+                            Double valorUnitarioItem = bundle.getDouble(KEY_VALOR_UNITARIO_ITEM);
+                            Double valorDescontoItem = bundle.getDouble(KEY_VALOR_DESCONTO_ITEM);
+                            Double valorTotalItem = bundle.getDouble(KEY_VALOR_TOTAL_ITEM);
+                            boolean tipoRateioItem = bundle.getBoolean(KEY_TIPO_RATEIO_ITEM);
+                            int casalRateioItem = bundle.getInt(KEY_CASAL_RATEIO_ITEM);
 
-                            recyclerViewItens.setAdapter(itemRecyclerViewAdapter);
+                            Item item = new Item(
+                                    descricaoItem,
+                                    quantidadeItem,
+                                    valorUnitarioItem,
+                                    valorDescontoItem,
+                                    valorTotalItem,
+                                    tipoRateioItem,
+                                    casalRateioItem);
+
+                            listaItens.add(item);
                         }
+
+//                        if (data.hasExtra("LISTA_ITENS")) {
+//                            listaItens = (ArrayList<Item>) data.getSerializableExtra("LISTA_ITENS");
+//
+//                            itemRecyclerViewAdapter = new ItemRecyclerViewAdapter(listaItens, CadastroLancamentoActivity.this);
+//
+//                            recyclerViewItens.setAdapter(itemRecyclerViewAdapter);
+//                        }
                     }
                 }
             }
@@ -138,7 +171,12 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
                 int moradorComprador = bundle.getInt(CadastroLancamentoActivity.KEY_MORADOR_COMPRADOR);
                 boolean tipoLancamento = bundle.getBoolean(CadastroLancamentoActivity.KEY_TIPO_LANCAMENTO);
 
-                lancamentoOriginal = new Lancamento(descricao, valorTotal, dataLancamento, moradorComprador, tipoLancamento);
+                lancamentoOriginal = new Lancamento(
+                        descricao,
+                        valorTotal,
+                        dataLancamento,
+                        moradorComprador,
+                        tipoLancamento);
 
                 editTextDescricao.setText(descricao);
                 editTextValorTotal.setText(String.valueOf(valorTotal));
@@ -154,7 +192,7 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
         fabAddItem.setOnClickListener(v -> {
             Intent intent = new Intent(this, CadastroItemActivity.class);
             intent.putExtra("LISTA_ITENS", listaItens);
-            launcherItens.launch(intent);
+            launcherNovoItem.launch(intent);
         });
     }
 
