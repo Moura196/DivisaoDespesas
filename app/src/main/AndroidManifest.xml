@@ -13,7 +13,8 @@
         android:theme="@style/Theme.ThemeStylesIons">
         <activity
             android:name=".CadastroItemActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Lancamento.CadastroLancamentoActivity"/>
         <activity
             android:name=".Item.ItensActivity"
             android:exported="false" />

@@ -73,50 +73,6 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
 
     private ArrayList<Item> listaItens = new ArrayList<>();
 
-    private ActivityResultLauncher<Intent> launcherNovoItem = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == CadastroLancamentoActivity.RESULT_OK &&
-                            result.getData() != null) {
-                        Intent intent = result.getData();
-
-                        Bundle bundle = intent.getExtras();
-
-                        if (bundle != null) {
-                            String descricaoItem = bundle.getString(KEY_DESCRICAO_ITEM);
-                            int quantidadeItem = bundle.getInt(KEY_QUANTIDADE_ITEM);
-                            Double valorUnitarioItem = bundle.getDouble(KEY_VALOR_UNITARIO_ITEM);
-                            Double valorDescontoItem = bundle.getDouble(KEY_VALOR_DESCONTO_ITEM);
-                            Double valorTotalItem = bundle.getDouble(KEY_VALOR_TOTAL_ITEM);
-                            boolean tipoRateioItem = bundle.getBoolean(KEY_TIPO_RATEIO_ITEM);
-                            int casalRateioItem = bundle.getInt(KEY_CASAL_RATEIO_ITEM);
-
-                            Item item = new Item(
-                                    descricaoItem,
-                                    quantidadeItem,
-                                    valorUnitarioItem,
-                                    valorDescontoItem,
-                                    valorTotalItem,
-                                    tipoRateioItem,
-                                    casalRateioItem);
-
-                            listaItens.add(item);
-                        }
-
-//                        if (data.hasExtra("LISTA_ITENS")) {
-//                            listaItens = (ArrayList<Item>) data.getSerializableExtra("LISTA_ITENS");
-//
-//                            itemRecyclerViewAdapter = new ItemRecyclerViewAdapter(listaItens, CadastroLancamentoActivity.this);
-//
-//                            recyclerViewItens.setAdapter(itemRecyclerViewAdapter);
-//                        }
-                    }
-                }
-            }
-    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,6 +151,52 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
             launcherNovoItem.launch(intent);
         });
     }
+
+    private ActivityResultLauncher<Intent> launcherNovoItem = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == CadastroLancamentoActivity.RESULT_OK &&
+                            result.getData() != null) {
+                        Intent intent = result.getData();
+
+                        Bundle bundle = intent.getExtras();
+
+                        if (bundle != null) {
+                            String descricaoItem = bundle.getString(KEY_DESCRICAO_ITEM);
+                            int quantidadeItem = bundle.getInt(KEY_QUANTIDADE_ITEM);
+                            Double valorUnitarioItem = bundle.getDouble(KEY_VALOR_UNITARIO_ITEM);
+                            Double valorDescontoItem = bundle.getDouble(KEY_VALOR_DESCONTO_ITEM);
+                            Double valorTotalItem = bundle.getDouble(KEY_VALOR_TOTAL_ITEM);
+                            boolean tipoRateioItem = bundle.getBoolean(KEY_TIPO_RATEIO_ITEM);
+                            int casalRateioItem = bundle.getInt(KEY_CASAL_RATEIO_ITEM);
+
+                            Item item = new Item(
+                                    descricaoItem,
+                                    quantidadeItem,
+                                    valorUnitarioItem,
+                                    valorDescontoItem,
+                                    valorTotalItem,
+                                    tipoRateioItem,
+                                    casalRateioItem);
+
+                            listaItens.add(item);
+                            itemRecyclerViewAdapter.notifyDataSetChanged();
+                        }
+
+//                        if (data.hasExtra("LISTA_ITENS")) {
+//                            listaItens = (ArrayList<Item>) data.getSerializableExtra("LISTA_ITENS");
+//
+//                            itemRecyclerViewAdapter = new ItemRecyclerViewAdapter(listaItens, CadastroLancamentoActivity.this);
+//
+//                            recyclerViewItens.setAdapter(itemRecyclerViewAdapter);
+//                        }
+                    }
+                }
+            }
+    );
 
     public void limparCampos() {
         editTextDescricao.setText(null);

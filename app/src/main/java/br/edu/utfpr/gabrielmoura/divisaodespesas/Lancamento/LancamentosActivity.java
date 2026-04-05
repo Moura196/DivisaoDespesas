@@ -147,7 +147,6 @@ public class LancamentosActivity extends AppCompatActivity {
 
                 recyclerViewLancamentos.setEnabled(false);
                 actionMode = startSupportActionMode(actionModeCallBack);
-
                 return true;
             }
         });
@@ -295,7 +294,8 @@ public class LancamentosActivity extends AppCompatActivity {
                         actionMode.finish();
                     }
                 }
-            });
+            }
+    );
 
     private void editarLancamento() {
         Lancamento lancamento = listaLancamentos.get(posicaoItemSelecionado);

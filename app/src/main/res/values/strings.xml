@@ -79,5 +79,7 @@
     <string name="valor_total_invalido">O valor total do item é calculado a partir do valor unitário, quantidade e desconto. Por favor, verifique o preenchimento correto destes campos!</string>
     <string name="salvar_item">Salvar Item</string>
     <string name="limpar_item">Limpar Item</string>
+    <string name="menu_editar_item">Editar</string>
+    <string name="menu_excluir_item">Excluir</string>
 
 </resources>
