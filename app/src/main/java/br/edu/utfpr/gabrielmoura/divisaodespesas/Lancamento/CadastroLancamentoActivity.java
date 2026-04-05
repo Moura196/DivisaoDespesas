@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -34,6 +33,7 @@ import br.edu.utfpr.gabrielmoura.divisaodespesas.CadastroItemActivity;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.Item.Item;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.Item.ItemRecyclerViewAdapter;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
+import br.edu.utfpr.gabrielmoura.divisaodespesas.utils.UtilsAlert;
 
 public class CadastroLancamentoActivity extends AppCompatActivity {
 
@@ -137,7 +137,7 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
                 editTextDescricao.setText(descricao);
                 editTextValorTotal.setText(String.valueOf(valorTotal));
 
-                SimpleDateFormat displayFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                SimpleDateFormat displayFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
                 editTextDate.setText(displayFormat.format(dataLancamento));
 
                 spinnerMoradorComprador.setSelection(moradorComprador);
@@ -207,18 +207,14 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
 
         editTextDescricao.requestFocus();
 
-        Toast.makeText(this,
-                R.string.limpeza_das_entradas,
-                Toast.LENGTH_LONG).show();
+        UtilsAlert.mostrarAviso(this, R.string.limpeza_das_entradas);
     }
 
     public void salvarValores() {
         String descricao = editTextDescricao.getText().toString();
 
         if (descricao == null || descricao.trim().isEmpty()) {
-            Toast.makeText(this,
-                    R.string.informar_descricao,
-                    Toast.LENGTH_LONG).show();
+            UtilsAlert.mostrarAviso(this, R.string.informar_descricao);
 
             editTextDescricao.requestFocus();
             return;
@@ -226,9 +222,7 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
 
         String valorTotalStr = editTextValorTotal.getText().toString();
         if (valorTotalStr == null || valorTotalStr.trim().isEmpty()) {
-            Toast.makeText(this,
-                    R.string.informar_valor_total,
-                    Toast.LENGTH_LONG).show();
+            UtilsAlert.mostrarAviso(this, R.string.informar_valor_total);
 
             editTextValorTotal.requestFocus();
             return;
@@ -238,18 +232,14 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
         try {
             valorTotal = Double.valueOf(valorTotalStr);
         } catch (NumberFormatException e) {
-            Toast.makeText(this,
-                    R.string.informar_valor_total,
-                    Toast.LENGTH_LONG).show();
+            UtilsAlert.mostrarAviso(this, R.string.informar_valor_total);
 
             editTextValorTotal.requestFocus();
             return;
         }
 
         if (valorTotal <= 0) {
-            Toast.makeText(this,
-                    R.string.informar_valor_total,
-                    Toast.LENGTH_LONG).show();
+            UtilsAlert.mostrarAviso(this, R.string.informar_valor_total);
 
             editTextValorTotal.requestFocus();
             return;
@@ -258,10 +248,7 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
         Date dataLancamento = null;
         String dataStr = editTextDate.getText().toString();
         if (dataStr == null || dataStr.trim().isEmpty()) {
-            Toast.makeText(
-                    this,
-                    R.string.informe_data_corretamente,
-                    Toast.LENGTH_LONG).show();
+            UtilsAlert.mostrarAviso(this, R.string.informe_data_corretamente);
 
             editTextDate.requestFocus();
             return;
@@ -271,10 +258,7 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
             dataLancamento = sdf.parse(dataStr);
         } catch (ParseException e) {
-            Toast.makeText(
-                    this,
-                    R.string.informe_data_corretamente,
-                    Toast.LENGTH_LONG).show();
+            UtilsAlert.mostrarAviso(this, R.string.informe_data_corretamente);
 
             editTextDate.requestFocus();
             return;
@@ -282,9 +266,7 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
 
         int moradorComprador = spinnerMoradorComprador.getSelectedItemPosition();
         if (moradorComprador == AdapterView.INVALID_POSITION) {
-            Toast.makeText(this,
-                    R.string.informar_morador_comprador,
-                    Toast.LENGTH_LONG).show();
+            UtilsAlert.mostrarAviso(this, R.string.informar_morador_comprador);
 
             return;
         }

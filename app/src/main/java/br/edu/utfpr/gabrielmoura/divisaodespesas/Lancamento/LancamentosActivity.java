@@ -1,9 +1,9 @@
 package br.edu.utfpr.gabrielmoura.divisaodespesas.Lancamento;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,6 +31,7 @@ import java.util.List;
 
 import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.Sobre.SobreActivity;
+import br.edu.utfpr.gabrielmoura.divisaodespesas.utils.UtilsAlert;
 
 public class LancamentosActivity extends AppCompatActivity {
 
@@ -74,7 +75,6 @@ public class LancamentosActivity extends AppCompatActivity {
                 return true;
             } else if (idMenuItem == R.id.menuItemExcluir) {
                 excluirLancamento();
-                mode.finish();
                 return true;
             } else {
                 return false;
@@ -143,7 +143,7 @@ public class LancamentosActivity extends AppCompatActivity {
                 viewSelecionada = view;
                 backgroundDrawable = view.getBackground();
 
-                view.setBackgroundColor(Color.LTGRAY);
+                view.setBackgroundColor(getColor(R.color.corSelecionada));
 
                 recyclerViewLancamentos.setEnabled(false);
                 actionMode = startSupportActionMode(actionModeCallBack);
@@ -235,14 +235,7 @@ public class LancamentosActivity extends AppCompatActivity {
             ordenarLista();
             return true;
         } else if (idMenuItem == R.id.menuItemRestaurar) {
-            restaurarPadroes();
-            atualizarIconeOrdenacao();
-            ordenarLista();
-
-            Toast.makeText(this,
-                    R.string.configuracoes_restauradas_padroes,
-                    Toast.LENGTH_LONG).show();
-
+            confirmarRestaurarPadroes();
             return true;
         } else {
                 return super.onOptionsItemSelected(item);
@@ -250,10 +243,23 @@ public class LancamentosActivity extends AppCompatActivity {
 
     }
 
-    public void excluirLancamento() {
-        listaLancamentos.remove(posicaoItemSelecionado);
+    public void  excluirLancamento() {
+        Lancamento lancamento = listaLancamentos.get(posicaoItemSelecionado);
 
-        lancamentoRecyclerViewAdapter.notifyDataSetChanged();
+        String mensagem = getString(R.string.deseja_apagar, lancamento.getDescricao());
+
+        DialogInterface.OnClickListener listenerSim = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                listaLancamentos.remove(posicaoItemSelecionado);
+
+                lancamentoRecyclerViewAdapter.notifyItemRemoved(posicaoItemSelecionado);
+
+                actionMode.finish();
+            }
+        };
+
+        UtilsAlert.confirmarAcao(this, mensagem, listenerSim, null);
     }
 
     ActivityResultLauncher<Intent> launcherEditarLancamento = registerForActivityResult(
@@ -344,6 +350,24 @@ public class LancamentosActivity extends AppCompatActivity {
         }
 
         lancamentoRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    private void confirmarRestaurarPadroes() {
+        DialogInterface.OnClickListener listenerSim = new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                restaurarPadroes();
+                atualizarIconeOrdenacao();
+                ordenarLista();
+
+                Toast.makeText(LancamentosActivity.this,
+                        R.string.configuracoes_restauradas_padroes,
+                        Toast.LENGTH_LONG).show();
+            }
+        };
+
+        UtilsAlert.confirmarAcao(this, R.string.deseja_restaurar_padroes, listenerSim, null);
     }
 
     private void restaurarPadroes() {

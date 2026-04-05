@@ -8,4 +8,6 @@
          <item name="colorPrimaryVariant">@color/lightBlue</item>
          <item name="colorOnPrimary">@color/black</item>
     </style>
+
+    <color name="corSelecionada">#EE7E7E7E</color>
 </resources>
