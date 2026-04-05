@@ -112,13 +112,13 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
             modo = bundle.getInt(KEY_MODO);
 
             if (modo == MODO_CADASTRO) {
-                setTitle("Novo Lançamento");
+                setTitle(getString(R.string.novo_lancamento));
 
                 if (sugerirMoradorComprador) {
                     spinnerMoradorComprador.setSelection(ultimoMoradorComprador);
                 }
             } else {
-                setTitle("Editar Lançamemento");
+                setTitle(getString(R.string.editar_lancamemento));
 
                 long id = bundle.getLong(KEY_ID);
 

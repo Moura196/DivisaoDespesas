@@ -93,9 +93,9 @@ public class CadastroItemActivity extends AppCompatActivity {
             modo = bundle.getInt(KEY_MODO);
 
             if (modo == MODO_CADASTRO) {
-                setTitle("Novo Item");
+                setTitle(getString(R.string.novo_item));
             } else {
-                setTitle("Editar Item");
+                setTitle(getString(R.string.editar_item));
 
                 String descricao = bundle.getString(CadastroItemActivity.KEY_DESCRICAO_ITEM);
                 int quantidade = bundle.getInt(CadastroItemActivity.KEY_QUANTIDADE_ITEM);
