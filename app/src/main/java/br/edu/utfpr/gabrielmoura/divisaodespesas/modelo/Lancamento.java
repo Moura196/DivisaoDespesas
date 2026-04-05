@@ -1,4 +1,9 @@
-package br.edu.utfpr.gabrielmoura.divisaodespesas.Lancamento;
+package br.edu.utfpr.gabrielmoura.divisaodespesas.modelo;
+
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import java.util.Comparator;
 import java.util.Date;
@@ -6,9 +11,14 @@ import java.util.List;
 
 import br.edu.utfpr.gabrielmoura.divisaodespesas.Item.Item;
 
+@Entity
 public class Lancamento  {
 
+    @PrimaryKey(autoGenerate = true)
     private Long id_lancamento;
+
+    @NonNull
+    @ColumnInfo(index = true)
     private String descricao;
     private Double valor_total;
     private Date data;

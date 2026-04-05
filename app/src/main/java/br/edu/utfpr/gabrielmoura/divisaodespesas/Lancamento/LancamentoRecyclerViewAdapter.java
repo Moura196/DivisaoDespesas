@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Locale;
 
 import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
+import br.edu.utfpr.gabrielmoura.divisaodespesas.modelo.Lancamento;
 
 public class LancamentoRecyclerViewAdapter extends RecyclerView.Adapter<LancamentoRecyclerViewAdapter.LancamentoHolder> {
 

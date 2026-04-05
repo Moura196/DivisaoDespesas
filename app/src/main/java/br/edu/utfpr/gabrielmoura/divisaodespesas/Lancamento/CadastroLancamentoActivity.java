@@ -33,6 +33,7 @@ import br.edu.utfpr.gabrielmoura.divisaodespesas.CadastroItemActivity;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.Item.Item;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.Item.ItemRecyclerViewAdapter;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
+import br.edu.utfpr.gabrielmoura.divisaodespesas.modelo.Lancamento;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.utils.UtilsAlert;
 
 public class CadastroLancamentoActivity extends AppCompatActivity {

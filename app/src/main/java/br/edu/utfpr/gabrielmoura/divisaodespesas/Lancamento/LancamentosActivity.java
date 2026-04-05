@@ -31,6 +31,7 @@ import java.util.List;
 
 import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.Sobre.SobreActivity;
+import br.edu.utfpr.gabrielmoura.divisaodespesas.modelo.Lancamento;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.utils.UtilsAlert;
 
 public class LancamentosActivity extends AppCompatActivity {
