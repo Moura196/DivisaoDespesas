@@ -88,5 +88,8 @@
     <string name="nao">No</string>
     <string name="deseja_apagar">Do you want to delete?\n\"%1$s\"</string>
     <string name="deseja_restaurar_padroes">Do you want to restore defaults?</string>
+    <string name="erro_ao_salvar_lancamento">Erro ao tentar salvar o lançamento!</string>
+    <string name="erro_ao_atualizar_lancamento">Erro ao tentar atualizar o lançamento!</string>
+    <string name="erro_ao_excluir_lancamento">Erro ao tentar excluir o lançamento!</string>
 
 </resources>

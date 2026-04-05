@@ -29,21 +29,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import br.edu.utfpr.gabrielmoura.divisaodespesas.CadastroItemActivity;
+import br.edu.utfpr.gabrielmoura.divisaodespesas.Item.CadastroItemActivity;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.Item.Item;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.Item.ItemRecyclerViewAdapter;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.modelo.Lancamento;
+import br.edu.utfpr.gabrielmoura.divisaodespesas.persistencia.LancamentosDatabase;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.utils.UtilsAlert;
 
 public class CadastroLancamentoActivity extends AppCompatActivity {
 
-    public static final String KEY_DESCRICAO = "KEY_DESCRICAO";
-    public static final String KEY_VALOR_TOTAL = "KEY_VALOR_TOTAL";
-    public static final String KEY_DATA_LANCAMENTO = "KEY_DATA_LANCAMENTO";
-    public static final String KEY_MORADOR_COMPRADOR = "KEY_MORADOR_COMPRADOR";
-    public static final String KEY_TIPO_LANCAMENTO = "KEY_TIPO_LANCAMENTO";
     public static final String KEY_MODO = "MODO";
+    public static final String KEY_ID = "ID";
+
     public static final String KEY_SUGERIR_MORADOR_COMPRADOR = "SUGERIR_MORADOR_COMPRADOR";
     public static final String KEY_ULTIMO_MORADOR_COMPRADOR = "ULTIMO_MORADOR_COMPRADOR";
 
@@ -122,27 +120,23 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
             } else {
                 setTitle("Editar Lançamemento");
 
-                String descricao = bundle.getString(CadastroLancamentoActivity.KEY_DESCRICAO);
-                Double valorTotal = bundle.getDouble(CadastroLancamentoActivity.KEY_VALOR_TOTAL);
-                Date dataLancamento = (Date) bundle.getSerializable(CadastroLancamentoActivity.KEY_DATA_LANCAMENTO);
-                int moradorComprador = bundle.getInt(CadastroLancamentoActivity.KEY_MORADOR_COMPRADOR);
-                boolean tipoLancamento = bundle.getBoolean(CadastroLancamentoActivity.KEY_TIPO_LANCAMENTO);
+                long id = bundle.getLong(KEY_ID);
 
-                lancamentoOriginal = new Lancamento(
-                        descricao,
-                        valorTotal,
-                        dataLancamento,
-                        moradorComprador,
-                        tipoLancamento);
+                LancamentosDatabase database = LancamentosDatabase.getInstance(this);
 
-                editTextDescricao.setText(descricao);
-                editTextValorTotal.setText(String.valueOf(valorTotal));
+                lancamentoOriginal = database.getLancamentoDao().queryForId(id);
+
+                editTextDescricao.setText(lancamentoOriginal.getDescricao());
+                editTextValorTotal.setText(String.valueOf(lancamentoOriginal.getValor_total()));
 
                 SimpleDateFormat displayFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                editTextDate.setText(displayFormat.format(dataLancamento));
+                editTextDate.setText(displayFormat.format(lancamentoOriginal.getData()));
 
-                spinnerMoradorComprador.setSelection(moradorComprador);
-                checkBoxTipoLancamento.setChecked(tipoLancamento);
+                spinnerMoradorComprador.setSelection(lancamentoOriginal.getMorador_comprador());
+                checkBoxTipoLancamento.setChecked(lancamentoOriginal.isTipo_lancamento());
+
+                editTextDescricao.requestFocus();
+                editTextDescricao.setSelection(editTextDescricao.getText().length());
             }
         }
 
@@ -274,27 +268,45 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
 
         boolean tipoLancamento = checkBoxTipoLancamento.isChecked();
 
-        if (modo == MODO_EDITAR &&
-            descricao.equalsIgnoreCase(lancamentoOriginal.getDescricao()) &&
-            valorTotal.equals(lancamentoOriginal.getValor_total()) &&
-            dataLancamento == lancamentoOriginal.getData() &&
-            moradorComprador == lancamentoOriginal.getMorador_comprador() &&
-            tipoLancamento == lancamentoOriginal.isTipo_lancamento()) {
+        Lancamento lancamento = new Lancamento(
+                descricao,
+                valorTotal,
+                dataLancamento,
+                moradorComprador,
+                tipoLancamento);
 
+        if (lancamento.equals(lancamentoOriginal)) {
             setResult(CadastroLancamentoActivity.RESULT_CANCELED);
             finish();
             return;
         }
 
-        salvarUltimoMoradorComprador(moradorComprador);
-
         Intent intentResposta = new Intent();
 
-        intentResposta.putExtra(KEY_DESCRICAO, descricao);
-        intentResposta.putExtra(KEY_VALOR_TOTAL, valorTotal);
-        intentResposta.putExtra(KEY_DATA_LANCAMENTO, dataLancamento);
-        intentResposta.putExtra(KEY_MORADOR_COMPRADOR, moradorComprador);
-        intentResposta.putExtra(KEY_TIPO_LANCAMENTO, tipoLancamento);
+        LancamentosDatabase database = LancamentosDatabase.getInstance(this);
+
+        if (modo == MODO_CADASTRO) {
+            long novoId = database.getLancamentoDao().inserir(lancamento);
+
+            if (novoId <= 0) {
+                UtilsAlert.mostrarAviso(this, R.string.erro_ao_salvar_lancamento);
+                return;
+            }
+
+            lancamento.setId_lancamento(novoId);
+        } else {
+            lancamento.setId_lancamento(lancamentoOriginal.getId_lancamento());
+
+            int quantidadeAlterada = database.getLancamentoDao().atualizar(lancamento);
+            if (quantidadeAlterada != 1) {
+                UtilsAlert.mostrarAviso(this, R.string.erro_ao_atualizar_lancamento);
+                return;
+            }
+        }
+
+        salvarUltimoMoradorComprador(moradorComprador);
+
+        intentResposta.putExtra(KEY_ID, lancamento.getId_lancamento());
 
         setResult(CadastroLancamentoActivity.RESULT_OK, intentResposta);
 

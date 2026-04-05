@@ -23,7 +23,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.edu.utfpr.gabrielmoura.divisaodespesas.CadastroItemActivity;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
 
 public class ItensActivity extends AppCompatActivity {

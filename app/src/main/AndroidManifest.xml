@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ThemeStylesIons">
         <activity
-            android:name=".CadastroItemActivity"
+            android:name=".Item.CadastroItemActivity"
             android:exported="false"
             android:parentActivityName=".Lancamento.CadastroLancamentoActivity"/>
         <activity

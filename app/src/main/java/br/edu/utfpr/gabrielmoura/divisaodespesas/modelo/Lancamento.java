@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import br.edu.utfpr.gabrielmoura.divisaodespesas.Item.Item;
 
@@ -101,6 +102,25 @@ public class Lancamento  {
 
     public void setItens(List<Item> itens) {
         this.itens = itens;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Lancamento lancamento = (Lancamento) o;
+
+        return morador_comprador == lancamento.morador_comprador &&
+                tipo_lancamento == lancamento.tipo_lancamento &&
+                descricao.equals(lancamento.descricao) &&
+                valor_total == lancamento.valor_total &&
+                data == lancamento.data &&
+                Objects.equals(itens, lancamento.itens);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(descricao, valor_total, data, morador_comprador, tipo_lancamento, itens);
     }
 
     @Override

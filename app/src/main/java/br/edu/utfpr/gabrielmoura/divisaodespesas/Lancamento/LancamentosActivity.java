@@ -24,14 +24,13 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.Sobre.SobreActivity;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.modelo.Lancamento;
+import br.edu.utfpr.gabrielmoura.divisaodespesas.persistencia.LancamentosDatabase;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.utils.UtilsAlert;
 
 public class LancamentosActivity extends AppCompatActivity {
@@ -121,7 +120,13 @@ public class LancamentosActivity extends AppCompatActivity {
     }
 
     private void popularListaLancamentos() {
-        listaLancamentos = new ArrayList<>();
+        LancamentosDatabase database = LancamentosDatabase.getInstance(this);
+
+        if (ordenacaoCrescente) {
+            listaLancamentos = database.getLancamentoDao().queryAllAscending();
+        } else {
+            listaLancamentos = database.getLancamentoDao().queryAllADownward();
+        }
 
         lancamentoRecyclerViewAdapter = new LancamentoRecyclerViewAdapter(listaLancamentos, this);
 
@@ -174,19 +179,11 @@ public class LancamentosActivity extends AppCompatActivity {
                             Bundle bundle = intent.getExtras();
 
                             if (bundle != null) {
-                                String descricao = bundle.getString(CadastroLancamentoActivity.KEY_DESCRICAO);
-                                Double valorTotal = bundle.getDouble(CadastroLancamentoActivity.KEY_VALOR_TOTAL);
-                                Date dataLancamento = (Date) bundle.getSerializable(CadastroLancamentoActivity.KEY_DATA_LANCAMENTO);
-                                int moradorComprador = bundle.getInt(CadastroLancamentoActivity.KEY_MORADOR_COMPRADOR);
-                                boolean tipoLancamento = bundle.getBoolean(CadastroLancamentoActivity.KEY_TIPO_LANCAMENTO);
+                                long id = bundle.getLong(CadastroLancamentoActivity.KEY_ID);
 
-                                Lancamento lancamento = new Lancamento(
-                                        descricao,
-                                        valorTotal,
-                                        dataLancamento,
-                                        moradorComprador,
-                                        tipoLancamento
-                                );
+                                LancamentosDatabase database = LancamentosDatabase.getInstance(LancamentosActivity.this);
+
+                                Lancamento lancamento = database.getLancamentoDao().queryForId(id);
 
                                 listaLancamentos.add(lancamento);
 
@@ -245,13 +242,21 @@ public class LancamentosActivity extends AppCompatActivity {
     }
 
     public void  excluirLancamento() {
-        Lancamento lancamento = listaLancamentos.get(posicaoItemSelecionado);
+        final Lancamento lancamento = listaLancamentos.get(posicaoItemSelecionado);
 
         String mensagem = getString(R.string.deseja_apagar, lancamento.getDescricao());
 
         DialogInterface.OnClickListener listenerSim = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                LancamentosDatabase database = LancamentosDatabase.getInstance(LancamentosActivity.this);
+                int quantidadeAlterada = database.getLancamentoDao().deletar(lancamento);
+
+                if (quantidadeAlterada != 1) {
+                    UtilsAlert.mostrarAviso(LancamentosActivity.this, R.string.erro_ao_excluir_lancamento);
+                    return;
+                }
+
                 listaLancamentos.remove(posicaoItemSelecionado);
 
                 lancamentoRecyclerViewAdapter.notifyItemRemoved(posicaoItemSelecionado);
@@ -276,19 +281,15 @@ public class LancamentosActivity extends AppCompatActivity {
                             Bundle bundle = intent.getExtras();
 
                             if (bundle != null) {
-                                String descricao = bundle.getString(CadastroLancamentoActivity.KEY_DESCRICAO);
-                                Double valorTotal = bundle.getDouble(CadastroLancamentoActivity.KEY_VALOR_TOTAL);
-                                Date dataLancamento = (Date) bundle.getSerializable(CadastroLancamentoActivity.KEY_DATA_LANCAMENTO);
-                                int moradorComprador = bundle.getInt(CadastroLancamentoActivity.KEY_MORADOR_COMPRADOR);
-                                boolean tipoLancamento = bundle.getBoolean(CadastroLancamentoActivity.KEY_TIPO_LANCAMENTO);
+                                final Lancamento lancamentoOriginal = listaLancamentos.get(posicaoItemSelecionado);
 
-                                Lancamento lancamento = listaLancamentos.get(posicaoItemSelecionado);
+                                long id = bundle.getLong(CadastroLancamentoActivity.KEY_ID);
 
-                                lancamento.setDescricao(descricao);
-                                lancamento.setValor_total(valorTotal);
-                                lancamento.setData(dataLancamento);
-                                lancamento.setMorador_comprador(moradorComprador);
-                                lancamento.setTipo_lancamento(tipoLancamento);
+                                final LancamentosDatabase database = LancamentosDatabase.getInstance(LancamentosActivity.this);
+
+                                final Lancamento lancamentoEditada = database.getLancamentoDao().queryForId(id);
+
+                                listaLancamentos.set(posicaoItemSelecionado, lancamentoEditada);
 
                                 ordenarLista();
                             }
@@ -311,11 +312,7 @@ public class LancamentosActivity extends AppCompatActivity {
 
         intentEdicao.putExtra(CadastroLancamentoActivity.KEY_MODO, CadastroLancamentoActivity.MODO_EDITAR);
 
-        intentEdicao.putExtra(CadastroLancamentoActivity.KEY_DESCRICAO, lancamento.getDescricao());
-        intentEdicao.putExtra(CadastroLancamentoActivity.KEY_VALOR_TOTAL, lancamento.getValor_total());
-        intentEdicao.putExtra(CadastroLancamentoActivity.KEY_DATA_LANCAMENTO, lancamento.getData());
-        intentEdicao.putExtra(CadastroLancamentoActivity.KEY_MORADOR_COMPRADOR, lancamento.getMorador_comprador());
-        intentEdicao.putExtra(CadastroLancamentoActivity.KEY_TIPO_LANCAMENTO, lancamento.isTipo_lancamento());
+        intentEdicao.putExtra(CadastroLancamentoActivity.KEY_ID, lancamento.getId_lancamento());
 
         launcherEditarLancamento.launch(intentEdicao);
     }

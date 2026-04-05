@@ -1,4 +1,4 @@
-package br.edu.utfpr.gabrielmoura.divisaodespesas;
+package br.edu.utfpr.gabrielmoura.divisaodespesas.Item;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import br.edu.utfpr.gabrielmoura.divisaodespesas.Item.Item;
+import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
 
 public class CadastroItemActivity extends AppCompatActivity {
 
