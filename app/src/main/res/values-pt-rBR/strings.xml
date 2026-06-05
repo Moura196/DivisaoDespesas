@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Divisão Despesas Familiar</string>
+
+    <!--    Página de cadastro do Morador-->
+    <string name="page_cadastro_morador">Cadastro de Morador</string>
+    <string name="nome">Nome</string>
+    <string name="genero">Gênero</string>
+    <string name="limpar">Limpar</string>
+    <string name="salvar">Salvar</string>
+    <string name="nomeCompleto">Nome Completo</string>
+    <string name="limpeza_das_entradas">As entradas foram limpas!</string>
+    <string name="informar_um_nome">É preciso informar um nome.</string>
+    <string name="radio_button_opcao_masculino">Masculino</string>
+    <string name="radio_button_opcao_feminino">Feminino</string>
+    <string name="faltou_selecionar_um_genero">Faltou selecionar um gênero</string>
+    <string name="grupo_familiar">Grupo familiar</string>
+    <string name="casal_Jorge_Viviane">Casal J/V</string>
+    <string name="casal_Gabriel_Amanda">Casal G/A</string>
+    <string name="responsavel_pelas_contas">Responsável pelas contas</string>
+    <string name="nao_responsavel">Não é responsável pelas contas</string>
+
+    <!--    Página de listagem de Lançamentos-->
+    <string name="morador_Jorge" translatable="false">Jorge</string>
+    <string name="morador_Viviane" translatable="false">Viviane</string>
+    <string name="morador_Gabriel" translatable="false">Gabriel</string>
+    <string name="morador_Amanda" translatable="false">Amanda</string>
+    <string name="page_listagem_lancamentos">Listagem de Lançamentos</string>
+    <string name="descricao_lancamento">Descrição: </string>
+    <string name="valor_total_lancamento">Valor total: </string>
+    <string name="data_lancamento">Data: </string>
+    <string name="morador_comprador_lancamento">Morador: </string>
+    <string name="tipo_conta_casa">Conta de casa</string>
+    <string name="tipo_conta_mercado">Mercado</string>
+    <string name="lancamento_com_descriao">Lançamento com descrição </string>
+    <string name="foi_clicado">foi clicado!</string>
+    <string name="recebeu_um_clique_longo">recebeu um clique longo!</string>
+
+    <!--    Página de cadastro de Lançamentos-->
+    <string name="page_cadastro_lancamento">Cadastro de Lançamento</string>
+    <string name="descricao_do_lancamento">Descrição do lançamento</string>
+    <string name="hint_valor_total">Valor total do lançamento</string>
+    <string name="hint_data_lancamento">Data do lançamento (dd-mm-aaaa)</string>
+    <string name="informar_descricao">É preciso informar uma descrição para o lançamento.</string>
+    <string name="informar_valor_total">Informar um valor total válido</string>
+    <string name="informe_data_corretamente">Utilize a formatação correta para data</string>
+    <string name="logo_da_aplicacao">Logo do aplicativo</string>
+    <string name="descricao_app_sobre">Descrição: O aplicativo visa resolver o problema de gestão de despesas em habitações compartilhadas por múltiplos núcleos familiares. Ele auxiliará o usuário a registrar compras de mercado e contas fixas, permitindo classificar cada gasto de acordo com quem deve pagar: se a despesa é comum a todos os moradores ou se é exclusiva de um dos casais. O software elimina a necessidade de anotações em papel e cálculos manuais complexos ao final do mês, fornecendo o valor exato que cada morador ou casal deve reembolsar ao comprador original.</string>
+    <string name="autor_sobre">Autor: Gabriel Mendes de Moura</string>
+    <string name="disciplina_sobre">Disciplina: Desenvolvimento Java Para Dispositivos Móveis</string>
+    <string name="curso_sobre">Curso: Pós Especialização em Java</string>
+    <string name="logo_utfpr">Logo da UTFPR</string>
+    <string name="email_sobre">E-mail: gabrielmendesmoura@alunos.utfpr.edu.br</string>
+    <string name="faculdade_sobre">Universidade: UTFPR</string>
+    <string name="botao_sobre">Sobre</string>
+    <string name="adicionar_lancamento">Adicionar</string>
+    <string name="informar_morador_comprador">O morador comprador deve ser selecionado!</string>
+    <string name="menu_editar">Editar</string>
+    <string name="menu_excluir">Excluir</string>
+    <string name="sugerir_morador_comprador">Sugerir Morador Comprador</string>
+    <string name="ordenacao">Ordenação</string>
+    <string name="restaurar_padrao">Restaurar padrão</string>
+    <string name="configuracoes_restauradas_padroes">As configurações foram restauradas para os padrões iniciais!</string>
+    <string name="itens_listing">Listagem de Itens</string>
+    <string name="rotulo_quantidade_item">Quantidade:</string>
+    <string name="valor_unitario">Valor Unitário:</string>
+    <string name="rotulo_desconto">Valor de Desconto:</string>
+    <string name="tipo_rateio_casal">Será dividido por um casal</string>
+    <string name="adicionar_item">Adicionar Item</string>
+    <string name="cadastro_de_item">Cadastro de Item</string>
+    <string name="descricao_do_item">Descrição do Item</string>
+    <string name="quantidade_do_item">Quantidade do Item</string>
+    <string name="valor_unitario_item">Valor Unitário do Item</string>
+    <string name="valor_de_desconto">Valor de Desconto do Item</string>
+    <string name="descricao_do_item_obrigatoria">A descrição do item é obrigatória!</string>
+    <string name="informar_um_quantidade_valida_para_item">Informar uma quantidade válida para o item!</string>
+    <string name="informe_valor_unitario_item">Valor unitário deve ser válido para o item!</string>
+    <string name="informe_valor_desconto_item">Valor de desconto deve ser válido para o item!</string>
+    <string name="informar_casal_para_rateio">O casal para o rateio deve ser selecionado!</string>
+    <string name="valor_total_invalido">O valor total do item é calculado a partir do valor unitário, quantidade e desconto. Por favor, verifique o preenchimento correto destes campos!</string>
+    <string name="salvar_item">Salvar Item</string>
+    <string name="limpar_item">Limpar Item</string>
+    <string name="menu_editar_item">Editar</string>
+    <string name="menu_excluir_item">Excluir</string>
+    <string name="aviso">Aviso</string>
+    <string name="confirmacao">Confirmação</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="deseja_apagar">Deseja apagar?"%1$s"</string>
+    <string name="deseja_restaurar_padroes">Deseja restaurar os padrões?</string>
+    <string name="erro_ao_salvar_lancamento">Erro ao tentar salvar o lançamento!</string>
+    <string name="erro_ao_atualizar_lancamento">Erro ao tentar atualizar o lançamento!</string>
+    <string name="erro_ao_excluir_lancamento">Erro ao tentar excluir o lançamento!</string>
+    <string name="novo_lancamento">Novo Lançamento</string>
+    <string name="editar_lancamemento">Editar Lançamemento</string>
+    <string name="novo_item">Novo Item</string>
+    <string name="editar_item">Editar Item</string>
+</resources>

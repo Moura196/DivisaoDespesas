@@ -1,4 +1,4 @@
-package br.edu.utfpr.gabrielmoura.divisaodespesas;
+package br.edu.utfpr.gabrielmoura.divisaodespesas.Morador;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +10,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class CadastroActivity extends AppCompatActivity {
+import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
+
+public class CadastroMoradorActivity extends AppCompatActivity {
 
     private EditText editTextNome;
     private RadioGroup radioGroupGenero;
@@ -20,7 +22,7 @@ public class CadastroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cadastro_activity);
+        setContentView(R.layout.activity_cadastro_morador);
 
         editTextNome = findViewById(R.id.editTextNome);
         radioGroupGenero = findViewById(R.id.radioGroupGenero);

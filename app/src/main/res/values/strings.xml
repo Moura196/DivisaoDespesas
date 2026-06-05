@@ -1,21 +1,99 @@
 <resources>
-    <string name="app_cadastro">Cadastro de Morador</string>
-    <string name="nome">Nome</string>
-    <string name="genero">Gênero</string>
-    <string name="limpar">Limpar</string>
-    <string name="salvar">Salvar</string>
-    <string name="nomeCompleto">Nome Completo</string>
-    <string name="mediaFinal">Média Final</string>
-    <string name="limpeza_das_entradas">As entradas foram limpas!</string>
-    <string name="informar_um_nome">É preciso informar um nome.</string>
-    <string name="media_precisa_ser_informada">A média precisa ser informada.</string>
-    <string name="nomeValor">"Nome: "</string>
-    <string name="radio_button_opcao_masculino">Masculino</string>
-    <string name="radio_button_opcao_feminino">Feminino</string>
-    <string name="faltou_selecionar_um_genero">Faltou selecionar um gênero</string>
-    <string name="grupo_familiar">Grupo familiar</string>
-    <string name="casal_1">Casal 1</string>
-    <string name="casal_2">Casal 2</string>
-    <string name="responsavel_pelas_contas">Responsável pelas contas</string>
-    <string name="nao_responsavel">Não é responsável pelas contas</string>
+
+    <!--    Página de cadastro do Morador-->
+    <string name="app_name">Family Expense Division</string>
+    <string name="page_cadastro_morador">Resident Registration</string>
+    <string name="nome">Name</string>
+    <string name="genero">Gender</string>
+    <string name="limpar">Clear</string>
+    <string name="salvar">Save</string>
+    <string name="nomeCompleto">Full Name</string>
+    <string name="limpeza_das_entradas">The entries have been cleared!</string>
+    <string name="informar_um_nome">A name must be provided.</string>
+    <string name="radio_button_opcao_masculino">Male</string>
+    <string name="radio_button_opcao_feminino">Female</string>
+    <string name="faltou_selecionar_um_genero">A gender selection is missing</string>
+    <string name="grupo_familiar">Family group</string>
+    <string name="casal_Jorge_Viviane">Couple J/V</string>
+    <string name="casal_Gabriel_Amanda">Couple G/A</string>
+    <string name="responsavel_pelas_contas">Responsible for the bills</string>
+    <string name="nao_responsavel">Not responsible for the bills</string>
+
+    <!--    Página de listagem de Lançamentos-->
+    <string name="morador_Jorge" translatable="false">Jorge</string>
+    <string name="morador_Viviane" translatable="false">Viviane</string>
+    <string name="morador_Gabriel" translatable="false">Gabriel</string>
+    <string name="morador_Amanda" translatable="false">Amanda</string>
+    <string name="page_listagem_lancamentos">Transaction Listing</string>
+    <string name="descricao_lancamento">Description: </string>
+    <string name="valor_total_lancamento">Total Value: </string>
+    <string name="data_lancamento">Date: </string>
+    <string name="morador_comprador_lancamento">Resident: </string>
+    <string name="tipo_conta_casa">Household bill</string>
+    <string name="tipo_conta_mercado">Market</string>
+    <string name="lancamento_com_descriao">Transaction with description </string>
+    <string name="foi_clicado"> was clicked!</string>
+    <string name="recebeu_um_clique_longo"> received a long click!</string>
+
+    <!--    Página de cadastro de Lançamentos-->
+    <string name="page_cadastro_lancamento">Transaction Registration</string>
+    <string name="descricao_do_lancamento">Transaction description</string>
+    <string name="hint_valor_total">Total transaction value</string>
+    <string name="hint_data_lancamento">Transaction date (dd/mm/yyyy)</string>
+    <string name="informar_descricao">A description for the transaction must be provided.</string>
+    <string name="informar_valor_total">Provide a valid total value</string>
+    <string name="informe_data_corretamente">Use the correct date format</string>
+    <string name="logo_da_aplicacao">Application logo</string>
+    <string name="descricao_app_sobre">Description: The application aims to solve the problem of expense management in shared housing by multiple family units. It will help the user record market purchases and fixed bills, allowing classification of each expense according to who should pay: whether the expense is common to all residents or exclusive to one of the couples. The software eliminates the need for paper notes and complex manual calculations at the end of the month, providing the exact amount each resident or couple must reimburse to the original buyer.</string>
+    <string name="autor_sobre">Author: Gabriel Mendes de Moura</string>
+    <string name="disciplina_sobre">Subject: Java Development for Mobile Devices</string>
+    <string name="curso_sobre">Course: Postgraduate Specialization in Java</string>
+    <string name="logo_utfpr">UTFPR Logo</string>
+    <string name="email_sobre">Email: gabrielmendesmoura@alunos.utfpr.edu.br</string>
+    <string name="faculdade_sobre">University: UTFPR</string>
+    <string name="botao_sobre">About</string>
+    <string name="adicionar_lancamento">Add</string>
+    <string name="informar_morador_comprador">The purchasing resident must be selected!</string>
+    <string name="menu_editar">Edit</string>
+    <string name="menu_excluir">Delete</string>
+    <string name="sugerir_morador_comprador">Suggest Purchasing Resident</string>
+    <string name="ordenacao">Sorting</string>
+    <string name="restaurar_padrao">Restore default</string>
+    <string name="configuracoes_restauradas_padroes">The settings have been restored to the default values!</string>
+    <string name="itens_listing">Items Listing</string>
+    <string name="rotulo_quantidade_item">Quantity:</string>
+    <string name="valor_unitario">Unit Value:</string>
+    <string name="rotulo_desconto">Discount Value:</string>
+    <string name="tipo_rateio_casal">Will be divided by a couple</string>
+    <string name="adicionar_item">Add Item</string>
+    <string name="cadastro_de_item">Item Registration</string>
+    <string name="descricao_do_item">Item Description</string>
+    <string name="quantidade_do_item">Item Quantity</string>
+    <string name="valor_unitario_item">Item Unit Value</string>
+    <string name="valor_de_desconto">Item Discount Value</string>
+    <string name="descricao_do_item_obrigatoria">The item description is required!</string>
+    <string name="informar_um_quantidade_valida_para_item">Enter a valid quantity for the item!</string>
+    <string name="informe_valor_unitario_item">Unit value must be valid for the item!</string>
+    <string name="informe_valor_desconto_item">Discount value must be valid for the item!</string>
+    <string name="informar_casal_para_rateio">The couple for sharing must be selected!</string>
+    <string name="valor_total_invalido">The total value of the item is calculated from the unit value, quantity, and discount. Please check that these fields are filled in correctly!</string>
+    <string name="salvar_item">Save Item</string>
+    <string name="limpar_item">Clear Item</string>
+    <string name="menu_editar_item">Edit</string>
+    <string name="menu_excluir_item">Delete</string>
+    <string name="aviso">Warning</string>
+    <string name="ok" translatable="false">OK</string>
+    <string name="confirmacao">Confirmation</string>
+    <string name="sim">Yes</string>
+    <string name="nao">No</string>
+    <string name="deseja_apagar">Do you want to delete?"%1$s"</string>
+    <string name="deseja_restaurar_padroes">Do you want to restore defaults?</string>
+    <string name="erro_ao_salvar_lancamento">Error trying to save the transaction!</string>
+    <string name="erro_ao_atualizar_lancamento">Error trying to update the transaction!</string>
+    <string name="erro_ao_excluir_lancamento">Error trying to delete the transaction!</string>
+    <string name="novo_lancamento">New Transaction</string>
+    <string name="editar_lancamemento">Edit Transaction</string>
+    <string name="novo_item">New Item</string>
+    <string name="editar_item">Edit Item</string>
+
 </resources>

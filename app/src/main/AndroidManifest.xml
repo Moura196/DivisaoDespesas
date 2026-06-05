@@ -7,19 +7,43 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_cadastro"
+        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DivisaoDespesas">
+        android:theme="@style/Theme.ThemeStylesIons">
         <activity
-            android:name=".CadastroActivity"
-            android:exported="true">
+            android:name=".Item.CadastroItemActivity"
+            android:exported="false"
+            android:parentActivityName=".Lancamento.CadastroLancamentoActivity"/>
+        <activity
+            android:name=".Item.ItensActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Sobre.SobreActivity"
+            android:exported="false"
+            android:parentActivityName=".Lancamento.CadastroLancamentoActivity" />
+        <activity
+            android:name=".Lancamento.CadastroLancamentoActivity"
+            android:exported="false"
+            android:parentActivityName=".Lancamento.LancamentosActivity" />
+        <activity
+            android:name=".Morador.MoradoresActivity"
+            android:exported="false"
+            android:parentActivityName=".Lancamento.LancamentosActivity" />
+        <activity
+            android:name=".Lancamento.LancamentosActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Morador.CadastroMoradorActivity"
+            android:exported="false"
+            android:parentActivityName=".Lancamento.LancamentosActivity" />
     </application>
 
 </manifest>
