@@ -117,6 +117,38 @@ Ele elimina a necessidade de anotações em papel e cálculos manuais, fornecend
   - Item selecionado em long-press recebe destaque visual (background cinza).  
   - RecyclerView desabilitada durante ActionMode para evitar múltiplas seleções.  
 
+### Entrega 5
+- **Sistema de Persistência com Room Database**:  
+  - Implementação de banco de dados local usando Room ORM.  
+  - `LancamentosDatabase`: configuração do banco de dados com TypeConverters.  
+  - `Converters`: conversores de tipo para `Date` e `List<Item>` com suporte a serialização JSON via Gson.  
+  - `LancamentoDao`: interface de acesso aos dados com operações CRUD.  
+
+- **Integração de Itens em Lançamentos**:  
+  - **CadastroItemActivity**: nova Activity para cadastro de itens com validação de entrada.  
+    - Campos: descrição, quantidade, valor unitário, valor desconto (com cálculo automático de total).  
+    - CheckBox para identificar se o item é rateado entre casais.  
+    - Spinner para seleção de casal (habilitado apenas quando checkbox selecionado).  
+    - TextWatcher para cálculo em tempo real do valor total do item.  
+  - **Item Entity**: modelo de dados com campos `id_item`, `descricao`, `quantidade`, `valor_unitario`, `valor_desconto`, `valor_total`, `rateio_casal`, `casal_rateio`.  
+
+- **Gerenciamento de Lista de Itens**:  
+  - **RecyclerView de Itens em CadastroLancamentoActivity**: exibição da lista de itens adicionados ao lançamento.  
+  - **ItemRecyclerViewAdapter**: adapter customizado para exibir itens com opções de interação.  
+  - **FloatingActionButton (FAB)**: botão flutuante para adicionar novos itens, visível apenas quando o lançamento é do tipo "Compra de Mercado".  
+  - Dinâmica de visibilidade: FAB fica oculto quando checkbox "Conta de Casa" é selecionado e visível para "Compra de Mercado".  
+
+- **Fluxo de Navegação Melhorado**:  
+  - **ActivityResultLauncher**: substituição de `startActivityForResult()` (deprecated) por **ActivityResultLauncher** para retorno de dados entre Activities.  
+  - Communicação entre CadastroItemActivity e CadastroLancamentoActivity via Bundle com dados do item.  
+  - Manutenção do estado da lista de itens durante a navegação entre Activities.  
+
+- **ItensActivity**: Activity adicional para listagem e gerenciamento isolado de itens (caso necessário).  
+
+- **Persistência de Dados**:  
+  - Operações de banco de dados (inserção, atualização, consulta) integradas ao fluxo de cadastro de lançamentos.  
+  - Serialização de `List<Item>` em JSON para armazenamento em banco relacional.  
+
 ---
 
 ## 📱 About the Project (English)
@@ -226,3 +258,37 @@ It removes the need for paper notes and manual calculations, providing the exact
 - **Validations and Visual Feedback**:  
   - Selected item in long-press receives visual highlight (gray background).  
   - RecyclerView disabled during ActionMode to prevent multiple selections.  
+
+### Delivery 5
+- **Persistence System with Room Database**:  
+  - Implementation of local database using Room ORM.  
+  - `LancamentosDatabase`: database configuration with TypeConverters.  
+  - `Converters`: type converters for `Date` and `List<Item>` with JSON serialization support via Gson.  
+  - `LancamentoDao`: data access interface with CRUD operations.  
+
+- **Item Integration in Expenses (Lançamentos)**:  
+  - **CadastroItemActivity**: new Activity for item registration with input validation.  
+    - Fields: description, quantity, unit value, discount value (with automatic total calculation).  
+    - CheckBox to identify if item is split between couples.  
+    - Spinner for couple selection (enabled only when checkbox is selected).  
+    - TextWatcher for real-time calculation of item total value.  
+  - **Item Entity**: data model with fields `id_item`, `descricao`, `quantidade`, `valor_unitario`, `valor_desconto`, `valor_total`, `rateio_casal`, `casal_rateio`.  
+
+- **Item List Management**:  
+  - **RecyclerView of Items in CadastroLancamentoActivity**: displays list of items added to the expense.  
+  - **ItemRecyclerViewAdapter**: customized adapter to display items with interaction options.  
+  - **FloatingActionButton (FAB)**: floating button to add new items, visible only when expense type is "Market Purchase".  
+  - Visibility dynamics: FAB is hidden when "Household Bill" checkbox is selected and visible for "Market Purchase".  
+
+- **Enhanced Navigation Flow**:  
+  - **ActivityResultLauncher**: replacement of deprecated `startActivityForResult()` with **ActivityResultLauncher** for data return between Activities.  
+  - Communication between CadastroItemActivity and CadastroLancamentoActivity via Bundle with item data.  
+  - Maintenance of item list state during navigation between Activities.  
+
+- **ItensActivity**: additional Activity for isolated item listing and management (if needed).  
+
+- **Data Persistence**:  
+  - Database operations (insert, update, query) integrated into the expense registration flow.  
+  - Serialization of `List<Item>` to JSON for storage in relational database.  
+
+
