@@ -1,4 +1,6 @@
-package br.edu.utfpr.gabrielmoura.divisaodespesas.Morador;
+package br.edu.utfpr.gabrielmoura.divisaodespesas.modelo;
+
+import br.edu.utfpr.gabrielmoura.divisaodespesas.Morador.Genero;
 
 public class Morador {
 

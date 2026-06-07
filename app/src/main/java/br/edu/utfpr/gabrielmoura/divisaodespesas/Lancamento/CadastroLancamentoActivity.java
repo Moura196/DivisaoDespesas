@@ -30,9 +30,9 @@ import java.util.Date;
 import java.util.Locale;
 
 import br.edu.utfpr.gabrielmoura.divisaodespesas.Item.CadastroItemActivity;
-import br.edu.utfpr.gabrielmoura.divisaodespesas.Item.Item;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.Item.ItemRecyclerViewAdapter;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
+import br.edu.utfpr.gabrielmoura.divisaodespesas.modelo.Item;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.modelo.Lancamento;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.persistencia.LancamentosDatabase;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.utils.UtilsAlert;

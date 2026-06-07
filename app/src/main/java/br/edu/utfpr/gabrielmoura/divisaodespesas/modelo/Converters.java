@@ -9,8 +9,6 @@ import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.List;
 
-import br.edu.utfpr.gabrielmoura.divisaodespesas.Item.Item;
-
 public class Converters {
     @TypeConverter
     public static Date fromTimestamp(Long value) {
