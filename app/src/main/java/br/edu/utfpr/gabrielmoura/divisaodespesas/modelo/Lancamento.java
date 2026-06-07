@@ -10,8 +10,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-import br.edu.utfpr.gabrielmoura.divisaodespesas.Item.Item;
-
 @Entity
 public class Lancamento  {
 

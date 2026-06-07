@@ -11,9 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
+import br.edu.utfpr.gabrielmoura.divisaodespesas.modelo.Item;
 
 public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerViewAdapter.ItemHolder> {
 
@@ -45,7 +47,7 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
         boolean onContextMenuItemClick(MenuItem item, int position);
     }
 
-    public ItemRecyclerViewAdapter(List<Item> listaItens, Context context) {
+    public ItemRecyclerViewAdapter(ArrayList<Item> listaItens, Context context) {
         this.listaItens = listaItens;
         this.context = context;
 

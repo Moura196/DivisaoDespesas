@@ -21,15 +21,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
+import br.edu.utfpr.gabrielmoura.divisaodespesas.modelo.Item;
 
 public class ItensActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewItens;
     private RecyclerView.LayoutManager layoutManager;
-    private List<Item> listaItens;
+    private ArrayList<Item> listaItens;
     private ItemRecyclerViewAdapter itemRecyclerViewAdapter;
     private int posicaoItemSelecionado = -1;
     private ActionMode actionMode;

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
+import br.edu.utfpr.gabrielmoura.divisaodespesas.modelo.Morador;
 
 public class MoradorRecyclerViewAdapter extends RecyclerView.Adapter<MoradorRecyclerViewAdapter.MoradorHolder> {
 
