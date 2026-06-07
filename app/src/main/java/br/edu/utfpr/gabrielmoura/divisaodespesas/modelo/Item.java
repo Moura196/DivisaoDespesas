@@ -1,4 +1,4 @@
-package br.edu.utfpr.gabrielmoura.divisaodespesas.Item;
+package br.edu.utfpr.gabrielmoura.divisaodespesas.modelo;
 
 public class Item {
 

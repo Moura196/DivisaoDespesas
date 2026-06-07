@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
+import br.edu.utfpr.gabrielmoura.divisaodespesas.modelo.Item;
 
 public class ItensActivity extends AppCompatActivity {
 
