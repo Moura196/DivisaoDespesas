@@ -30,9 +30,9 @@ import java.util.Date;
 import java.util.Locale;
 
 import br.edu.utfpr.gabrielmoura.divisaodespesas.Item.CadastroItemActivity;
-import br.edu.utfpr.gabrielmoura.divisaodespesas.modelo.Item;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.Item.ItemRecyclerViewAdapter;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
+import br.edu.utfpr.gabrielmoura.divisaodespesas.modelo.Item;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.modelo.Lancamento;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.persistencia.LancamentosDatabase;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.utils.UtilsAlert;
@@ -134,13 +134,6 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
 
                 spinnerMoradorComprador.setSelection(lancamentoOriginal.getMorador_comprador());
                 checkBoxTipoLancamento.setChecked(lancamentoOriginal.isTipo_lancamento());
-
-                // Load existing itens into the local listaItens so they appear on the RecyclerView
-                if (lancamentoOriginal.getItens() != null) {
-                    listaItens.clear();
-                    listaItens.addAll(lancamentoOriginal.getItens());
-                    itemRecyclerViewAdapter.notifyDataSetChanged();
-                }
 
                 editTextDescricao.requestFocus();
                 editTextDescricao.setSelection(editTextDescricao.getText().length());
@@ -282,8 +275,6 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
                 moradorComprador,
                 tipoLancamento);
 
-        lancamento.setItens(listaItens);
-
         if (lancamento.equals(lancamentoOriginal)) {
             setResult(CadastroLancamentoActivity.RESULT_CANCELED);
             finish();
@@ -307,7 +298,7 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
             lancamento.setId_lancamento(lancamentoOriginal.getId_lancamento());
 
             int quantidadeAlterada = database.getLancamentoDao().atualizar(lancamento);
-            if (quantidadeAlterada <= 0) {
+            if (quantidadeAlterada != 1) {
                 UtilsAlert.mostrarAviso(this, R.string.erro_ao_atualizar_lancamento);
                 return;
             }
@@ -316,9 +307,9 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
         salvarUltimoMoradorComprador(moradorComprador);
 
         intentResposta.putExtra(KEY_ID, lancamento.getId_lancamento());
-        intentResposta.putExtra(KEY_ULTIMO_MORADOR_COMPRADOR, moradorComprador);
 
         setResult(CadastroLancamentoActivity.RESULT_OK, intentResposta);
+
         finish();
     }
 

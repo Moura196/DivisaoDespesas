@@ -1,6 +1,8 @@
 package br.edu.utfpr.gabrielmoura.divisaodespesas.modelo;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable {
 
     private Long id_item;
     private String descricao;
@@ -10,6 +12,9 @@ public class Item {
     private Double valor_total;
     private boolean rateio_casal; // checkbox identificando se o item é rateado entre os moradores ou pelo casal
     private int casal_rateio; // spinner listando os casais cadastrados, caso o item seja rateado pelo casal
+
+    public Item() {
+    }
 
     public Item(String descricao, int quantidade, Double valor_unitario, Double valor_desconto, Double valor_total, boolean rateio_casal, int casal_rateio) {
         this.descricao = descricao;
@@ -62,7 +67,7 @@ public class Item {
     }
 
     public Double getValor_total() {
-        return (valor_unitario * quantidade) - valor_desconto;
+        return valor_total;
     }
 
     public void setValor_total(Double valor_total) {
