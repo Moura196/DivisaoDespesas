@@ -16,3 +16,6 @@ local.properties
 
 # Ignore IntelliJ / Android Studio project files
 /.idea/
+
+# Local keystore properties (do not commit)
+key.properties
