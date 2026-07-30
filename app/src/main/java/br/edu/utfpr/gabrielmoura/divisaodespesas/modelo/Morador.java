@@ -2,11 +2,16 @@ package br.edu.utfpr.gabrielmoura.divisaodespesas.modelo;
 
 import br.edu.utfpr.gabrielmoura.divisaodespesas.Morador.Genero;
 
+/** Entidade Morador:
+ * Para cadastro de moradores de um GrupoMoradores*/
 public class Morador {
 
     private Long id_morador;
     private String nome;
     private Genero genero;
+    // TODO: Develop a GrupoFamiliar class for a later registration functionality. I need to register a ConjuntoFamiliar to insert one or
+    //  more objects that is an instance of Morador and then create GrupoFamiliar to make possible for the user to indentify which
+    //  Item is for a specific GrupoFamiliar to pay or not.
     private int grupo_familiar; //spinner listando os grupos familiares cadastrados
     private boolean responsavel_contas; //checkbox identificando se o morador é responsável por pagar as contas
 

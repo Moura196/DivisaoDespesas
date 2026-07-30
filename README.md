@@ -25,9 +25,6 @@ Ele elimina a necessidade de anotações em papel e cálculos manuais, fornecend
 ---
 
 ## 🚀 Status do Projeto
-### Entrega 1
-- **Cadastro de Morador**: Activity com formulário usando TextView, EditText, RadioButton, CheckBox, Spinner, ScrollView e validação com Toast.  
-
 ### Entrega 2
 - **Nova Entidade: Lançamento**  
   - `id_lancamento`  

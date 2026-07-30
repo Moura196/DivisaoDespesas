@@ -39,7 +39,7 @@ public class CadastroMoradorActivity extends AppCompatActivity {
 
         editTextNome.requestFocus();
 
-        // VERIFICAR REQUISITOS DO PROFESSOR
+        // TODO: Change all Toast with UtilsAlert
         Toast.makeText(this,
                 R.string.limpeza_das_entradas,
                 Toast.LENGTH_LONG).show();
@@ -49,7 +49,6 @@ public class CadastroMoradorActivity extends AppCompatActivity {
         String nome = editTextNome.getText().toString();
 
         if (nome == null || nome.trim().isEmpty()) {
-            // VERIFICAR REQUISITOS DO PROFESSOR
             Toast.makeText(this,
                     R.string.informar_um_nome,
                     Toast.LENGTH_LONG).show();
