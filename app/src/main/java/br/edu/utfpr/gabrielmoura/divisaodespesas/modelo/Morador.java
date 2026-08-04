@@ -11,7 +11,7 @@ public class Morador {
     private Genero genero;
     // TODO: Develop a GrupoFamiliar class for a later registration functionality. I need to register a ConjuntoFamiliar to insert one or
     //  more objects that is an instance of Morador and then create GrupoFamiliar to make possible for the user to indentify which
-    //  Item is for a specific GrupoFamiliar to pay or not.
+    //  Item is for a specific GrupoFamiliar to pay or not.(CONFIRM THE NAMES I AM GIVING)
     private int grupo_familiar; //spinner listando os grupos familiares cadastrados
     private boolean responsavel_contas; //checkbox identificando se o morador é responsável por pagar as contas
 

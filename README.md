@@ -26,15 +26,6 @@ Ele elimina a necessidade de anotações em papel e cálculos manuais, fornecend
 
 ## 🚀 Status do Projeto
 ### Entrega 2
-- **Nova Entidade: Lançamento**  
-  - `id_lancamento`  
-  - `descricao`  
-  - `valor_total`  
-  - `data`  
-  - `id_morador_comprador`  
-  - `tipo_rateio` (checkbox → se selecionado, é uma conta fixa dividida igualmente)  
-  - `itens` (lista de itens, usada apenas em compras de mercado)  
-
 - **Nova Entidade: Item**  
   - `id_item`  
   - `descricao_item`  

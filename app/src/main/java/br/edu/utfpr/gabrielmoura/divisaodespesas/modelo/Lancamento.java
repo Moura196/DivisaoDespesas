@@ -21,6 +21,10 @@ public class Lancamento  {
     private String descricao;
     private Double valor_total;
     private Date data;
+    // todo: Think about the GrupoFamiliar and ConjuntoFamiliar to select the Morador. I am
+    //  thinking about when I register a new Lancamento the user should select the ConuntoFamiliar
+    //  to link this Lancamento, and only then the user can select the Morador who paid the
+    //  Lancamento
     private int morador_comprador; // spinner listando os moradores cadastrados
     private boolean tipo_lancamento; // checkbox identificando se é uma conta de casa ou compra de mercado
     private List<Item> itens;
