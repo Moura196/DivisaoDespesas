@@ -136,13 +136,13 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
     public void onBindViewHolder(@NonNull ItemHolder holder, int position) {
         Item item = listaItens.get(position);
 
-        holder.textViewValorDescricaoItem.setText(item.getDescricao());
+        holder.textViewValorDescricaoItem.setText(item.getDescricao_item());
         holder.textViewValorQuant.setText(String.valueOf(item.getQuantidade()));
         holder.textViewValorUnitario.setText(String.format("%.2f", item.getValor_unitario()));
         holder.textViewValorDesconto.setText(String.format("%.2f", item.getValor_desconto()));
         holder.textViewValorTotalItem.setText(String.format("%.2f", item.getValor_total()));
-        if (item.isRateio_casal() && item.getCasal_rateio() >= 0 && item.getCasal_rateio() < listaCasal.length) {
-            holder.textViewValorCasalRateio.setText(listaCasal[item.getCasal_rateio()]);
+        if (item.isIs_rateio_grupo() && item.getGrupo_rateio() >= 0 && item.getGrupo_rateio() < listaCasal.length) {
+            holder.textViewValorCasalRateio.setText(listaCasal[item.getGrupo_rateio()]);
         } else {
             holder.textViewValorCasalRateio.setText("");
         }

@@ -296,12 +296,12 @@ public class CadastroItemActivity extends AppCompatActivity {
         }
 
         if (modo == MODO_EDITAR &&
-                descricao.equalsIgnoreCase(itemOriginal.getDescricao()) &&
+                descricao.equalsIgnoreCase(itemOriginal.getDescricao_item()) &&
                 quantidadeItem == itemOriginal.getQuantidade() &&
                 valorUnitario.equals(itemOriginal.getValor_unitario()) &&
                 valorDesconto.equals(itemOriginal.getValor_desconto()) &&
                 valorTotal.equals(itemOriginal.getValor_total()) &&
-                tipoRateio == itemOriginal.isRateio_casal() &&
+                tipoRateio == itemOriginal.isIs_rateio_grupo() &&
                 casalRateio == spinnerCasalRateio.getSelectedItemPosition()) {
 
             setResult(CadastroItemActivity.RESULT_CANCELED);

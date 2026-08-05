@@ -32,8 +32,8 @@ Ele elimina a necessidade de anotações em papel e cálculos manuais, fornecend
   - `quantidade`  
   - `valor_unitario`  
   - `valor_total_item`  
-  - `tipo_rateio` (checkbox → se selecionado, dividido por casal)  
-  - `núcleo_familiar` (spinner → habilitado apenas se o checkbox acima for selecionado)  
+  - `is_rateio_grupo` (checkbox → se selecionado, dividido por casal)  
+  - `casal_rateio` (spinner → habilitado apenas se o checkbox acima for selecionado)  
 
 - **Data Source**: Arrays em `res/values/arrays.xml` com pelo menos 10 lançamentos simulados.  
 - **ArrayList<Lancamento>**: armazenamento dos objetos instanciados.  

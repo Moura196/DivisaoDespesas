@@ -5,25 +5,25 @@ import java.io.Serializable;
 public class Item implements Serializable {
 
     private Long id_item;
-    private String descricao;
+    private String descricao_item;
     private int quantidade;
     private Double valor_unitario;
     private Double valor_desconto;
     private Double valor_total;
-    private boolean rateio_casal; // checkbox identificando se o item é rateado entre os moradores ou pelo casal
-    private int casal_rateio; // spinner listando os casais cadastrados, caso o item seja rateado pelo casal
+    private boolean is_rateio_grupo; // checkbox identificando se o item é rateado entre os moradores ou pelo casal
+    private int grupo_rateio; // spinner listando os casais cadastrados, caso o item seja rateado pelo casal
 
     public Item() {
     }
 
-    public Item(String descricao, int quantidade, Double valor_unitario, Double valor_desconto, Double valor_total, boolean rateio_casal, int casal_rateio) {
-        this.descricao = descricao;
+    public Item(String descricao_item, int quantidade, Double valor_unitario, Double valor_desconto, Double valor_total, boolean is_rateio_grupo, int grupo_rateio) {
+        this.descricao_item = descricao_item;
         this.quantidade = quantidade;
         this.valor_unitario = valor_unitario;
         this.valor_desconto = valor_desconto;
         this.valor_total = valor_total;
-        this.rateio_casal = rateio_casal;
-        this.casal_rateio = casal_rateio;
+        this.is_rateio_grupo = is_rateio_grupo;
+        this.grupo_rateio = grupo_rateio;
     }
 
     public Long getId_item() {
@@ -34,12 +34,12 @@ public class Item implements Serializable {
         this.id_item = id_item;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescricao_item() {
+        return descricao_item;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setDescricao_item(String descricao_item) {
+        this.descricao_item = descricao_item;
     }
 
     public int getQuantidade() {
@@ -74,30 +74,30 @@ public class Item implements Serializable {
         this.valor_total = valor_total;
     }
 
-    public boolean isRateio_casal() {
-        return rateio_casal;
+    public boolean isIs_rateio_grupo() {
+        return is_rateio_grupo;
     }
 
-    public void setRateio_casal(boolean rateio_casal) {
-        this.rateio_casal = rateio_casal;
+    public void setIs_rateio_grupo(boolean is_rateio_grupo) {
+        this.is_rateio_grupo = is_rateio_grupo;
     }
 
-    public int getCasal_rateio() {
-        return casal_rateio;
+    public int getGrupo_rateio() {
+        return grupo_rateio;
     }
 
-    public void setCasal_rateio(int casal_rateio) {
-        this.casal_rateio = casal_rateio;
+    public void setGrupo_rateio(int grupo_rateio) {
+        this.grupo_rateio = grupo_rateio;
     }
 
     @Override
     public String toString() {
-        return descricao + '\n' +
+        return descricao_item + '\n' +
                 quantidade + '\n' +
                 valor_unitario + '\n' +
                 valor_desconto + '\n' +
                 valor_total + '\n' +
-                rateio_casal + '\n' +
-                casal_rateio;
+                is_rateio_grupo + '\n' +
+                grupo_rateio;
     }
 }
