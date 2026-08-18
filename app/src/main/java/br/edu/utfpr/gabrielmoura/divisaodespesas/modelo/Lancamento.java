@@ -19,6 +19,8 @@ public class Lancamento  {
     @NonNull
     @ColumnInfo(index = true)
     private String descricao;
+    // todo: If Lancamento is not a household bill it should calculate the total value from
+    //  the list of Items
     private Double valor_total;
     private Date data;
     // todo: Think about the GrupoFamiliar and ConjuntoFamiliar to select the Morador. I am

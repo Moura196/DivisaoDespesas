@@ -25,16 +25,6 @@ Ele elimina a necessidade de anotações em papel e cálculos manuais, fornecend
 ---
 
 ## 🚀 Status do Projeto
-### Entrega 2
-- **Nova Entidade: Item**  
-  - `id_item`  
-  - `descricao_item`  
-  - `quantidade`  
-  - `valor_unitario`  
-  - `valor_total_item`  
-  - `is_rateio_grupo` (checkbox → se selecionado, dividido por casal)  
-  - `casal_rateio` (spinner → habilitado apenas se o checkbox acima for selecionado)  
-
 - **Data Source**: Arrays em `res/values/arrays.xml` com pelo menos 10 lançamentos simulados.  
 - **ArrayList<Lancamento>**: armazenamento dos objetos instanciados.  
 - **Activity Principal (Launcher)**: Listagem de Lançamentos usando **RecyclerView**.  
