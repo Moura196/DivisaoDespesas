@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
 
+/* Responsable to register a 'Morador' at a 'ConjuntoFamiliar'.
+ * It'll be the set of 'Moradores' of which live together and share the expenses */
 public class CadastroMoradorActivity extends AppCompatActivity {
 
     private EditText editTextNome;
@@ -46,6 +48,7 @@ public class CadastroMoradorActivity extends AppCompatActivity {
     }
 
     public void salvarValores(View view) {
+        // Get the values from the name field
         String nome = editTextNome.getText().toString();
 
         if (nome == null || nome.trim().isEmpty()) {
@@ -57,6 +60,7 @@ public class CadastroMoradorActivity extends AppCompatActivity {
             return;
         }
 
+        // Get the values from the gender field
         int radioButtonId = radioGroupGenero.getCheckedRadioButtonId();
 
         String genero = "";
@@ -70,8 +74,10 @@ public class CadastroMoradorActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         };
 
+        // Get the values from the grupo familiar field
         String grupoFamiliar = (String) spinnerGrupoFamiliar.getSelectedItem();
 
+        // Get the values from the responsible for this account field
         boolean responsavel = checkBoxRespContas.isChecked();
 
         Toast.makeText(this,

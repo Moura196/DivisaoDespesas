@@ -31,22 +31,6 @@ Ele elimina a necessidade de anotações em papel e cálculos manuais, fornecend
 - **Adapter Customizado**: exibe dados de cada Lançamento.  
 - **Item Click**: Toast exibindo informações do Lançamento clicado.
 
-### Entrega 3
-- **Entidade Morador Expandida**:  
-  - `id_morador`  
-  - `nome`  
-  - `genero` (Enum)  
-  - `grupo_familiar` (spinner de grupos familiares)  
-  - `responsavel_contas` (checkbox → identifica morador responsável por pagar contas)  
-
-- **Entidade Lancamento Consolidada**:  
-  - `id_lancamento`  
-  - `descricao`  
-  - `valor_total`  
-  - `data`  
-  - `morador_comprador` (spinner listando moradores cadastrados)  
-  - `tipo_lancamento` (checkbox → true = conta de casa, false = compra de mercado)  
-
 - **CadastroMoradorActivity**: Activity com validação de entrada e formulário completo para registro de moradores.  
 
 - **CadastroLancamentoActivity**: Activity com validação de entrada (descrição, valor positivo, data em formato dd/MM/yyyy) e formulário completo para registro de lançamentos.  
