@@ -22,6 +22,8 @@ public class Lancamento  {
     // todo: If Lancamento is not a household bill it should calculate the total value from
     //  the list of Items
     private Double valor_total;
+    // todo: create patern for the date format(dd/MM/YY). Make possible to write the date
+    //  already with the "/".
     private Date data;
     // todo: Think about the GrupoFamiliar and ConjuntoFamiliar to select the Morador. I am
     //  thinking about when I register a new Lancamento the user should select the ConuntoFamiliar

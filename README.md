@@ -25,47 +25,38 @@ Ele elimina a necessidade de anotações em papel e cálculos manuais, fornecend
 ---
 
 ## 🚀 Status do Projeto
-- **Data Source**: Arrays em `res/values/arrays.xml` com pelo menos 10 lançamentos simulados.  
 - **ArrayList<Lancamento>**: armazenamento dos objetos instanciados.  
 - **Activity Principal (Launcher)**: Listagem de Lançamentos usando **RecyclerView**.  
-- **Adapter Customizado**: exibe dados de cada Lançamento.  
-- **Item Click**: Toast exibindo informações do Lançamento clicado.
-
-- **CadastroMoradorActivity**: Activity com validação de entrada e formulário completo para registro de moradores.  
-
-- **CadastroLancamentoActivity**: Activity com validação de entrada (descrição, valor positivo, data em formato dd/MM/yyyy) e formulário completo para registro de lançamentos.  
-
-- **MoradoresActivity**: Listagem de Moradores usando **RecyclerView** com dados carregados a partir de `res/values/arrays.xml`.  
-
-- **LancamentosActivity**: Listagem de Lançamentos usando **RecyclerView** com listeners de clique simples e longo que exibem Toast com informações do lançamento.  
+- **Adapter Customizado**: exibe dados de cada Lançamento.
+- **CadastroMoradorActivity**: Activity com validação de entrada e formulário completo para registro de moradores.
+- **CadastroLancamentoActivity**: Activity com validação de entrada (descrição, valor positivo, data em formato dd/MM/yyyy) e formulário completo para registro de lançamentos.
+- **MoradoresActivity**: Listagem de Moradores usando **RecyclerView** com dados cadastrado através do **CadastroLancamentoActivity**.
+- **LancamentosActivity**: Listagem de Lançamentos usando **RecyclerView** com listeners de clique simples e longo que possibilita a edição ou exclusão do lançamento.  
 
 - **Adapters Customizados**:  
   - `MoradorRecyclerViewAdapter`: exibe dados de cada Morador na lista.  
   - `LancamentoRecyclerViewAdapter`: exibe dados de cada Lançamento na lista com interface de listener para interações.  
+  - `ItemRecyclerViewAdapter`: exibe dados de cada Item na lista do Lancamento com interface de listener para interações.
 
-- **SobreActivity**: Tela "Sobre" do aplicativo acessível a partir da Activity principal.  
-
-- **Data Source**: Arrays em `res/values/arrays.xml` com dados simulados de moradores e lançamentos.  
-
+- **SobreActivity**: Tela "Sobre" do aplicativo acessível a partir da Activity principal.
+- 
 - **Navegação**: Menu de opções e botões para navegação entre Cadastros, Listagens e Sobre.  
-
-### Entrega 4
-- **ActionMode para Contexto**: Implementação de menu contextual com long-press.  
+- **Menu de Ações (Action Menu)**:  
+  - Menu superior em **LancamentosActivity** com opções:  
+    - **Adicionar**: abre **CadastroLancamentoActivity** para novo lançamento.
+    - **Ordenar**: Possibilita ao usuário mudar a ordem da lista, baseada na data.
+    - **Sobre**: acessa **SobreActivity**.  
+  - Ícones visuais para melhor UX.  
 
 - **Edição de Lançamentos**:  
   - Clique simples no item da lista abre o formulário de edição pré-preenchido.  
   - Após edição, a lista é atualizada e reordenada automaticamente.  
 
+- **ActionMode para Contexto**: Implementação de menu contextual com long-press.  
 - **Exclusão de Lançamentos**:  
   - Long-press em um item ativa o **ActionMode** com visual destacado (background cinza).  
   - Menu contextual exibe opções "Editar" e "Excluir" com ícones.  
   - Exclusão remove o item da lista e atualiza a RecyclerView.  
-
-- **Menu de Ações (Action Menu)**:  
-  - Menu superior em **LancamentosActivity** com opções:  
-    - **Adicionar**: abre **CadastroLancamentoActivity** para novo lançamento.  
-    - **Sobre**: acessa **SobreActivity**.  
-  - Ícones visuais para melhor UX.  
 
 - **Ordenação Automática**:  
   - Lançamentos são ordenados em **ordem crescente por data** usando `Comparator`.  
