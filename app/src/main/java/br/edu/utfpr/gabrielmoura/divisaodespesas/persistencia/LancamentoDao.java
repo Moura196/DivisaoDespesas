@@ -10,6 +10,7 @@ import java.util.List;
 
 import br.edu.utfpr.gabrielmoura.divisaodespesas.modelo.Lancamento;
 
+// Interface de acesso aos dados com operações CRUD
 @Dao
 public interface LancamentoDao {
 

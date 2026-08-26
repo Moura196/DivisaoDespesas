@@ -70,7 +70,6 @@ Ele elimina a necessidade de anotações em papel e cálculos manuais, fornecend
   - Item selecionado em long-press recebe destaque visual (background cinza).  
   - RecyclerView desabilitada durante ActionMode para evitar múltiplas seleções.  
 
-### Entrega 5
 - **Sistema de Persistência com Room Database**:  
   - Implementação de banco de dados local usando Room ORM.  
   - `LancamentosDatabase`: configuração do banco de dados com TypeConverters.  

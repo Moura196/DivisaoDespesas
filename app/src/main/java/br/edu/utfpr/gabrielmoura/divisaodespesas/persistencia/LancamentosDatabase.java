@@ -10,6 +10,7 @@ import androidx.room.TypeConverters;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.modelo.Lancamento;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.modelo.Converters;
 
+// Configuração do banco de dados com TypeConverters
 @Database(entities = {Lancamento.class}, version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class LancamentosDatabase extends RoomDatabase {

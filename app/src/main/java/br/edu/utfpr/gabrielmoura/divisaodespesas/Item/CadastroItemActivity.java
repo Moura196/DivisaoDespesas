@@ -19,6 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.modelo.Item;
 
+// todo: Make possible to calculate the total value from the list of Item. This total value is the
+//  value that should be showed at the total value from the Lancamento which is a market shopping
+//  list. It it not a household bill.
 public class CadastroItemActivity extends AppCompatActivity {
 
     public static final String KEY_DESCRICAO_ITEM = "KEY_DESCRICAO_ITEM";
