@@ -19,16 +19,17 @@ public class Lancamento  {
     @NonNull
     @ColumnInfo(index = true)
     private String descricao;
-    // todo: If Lancamento is not a household bill it should calculate the total value from
+    // refactor: If Lancamento is not a household bill it should calculate the total value from
     //  the list of Items
     private Double valor_total;
-    // todo: create patern for the date format(dd/MM/YY). Make possible to write the date
+    // fixme: create patern for the date format(dd/MM/YY). Make possible to write the date
     //  already with the "/".
     private Date data;
-    // todo: Think about the GrupoFamiliar and ConjuntoFamiliar to select the Morador. I am
+    // refactor: Think about the GrupoFamiliar and ConjuntoFamiliar to select the Morador. I am
     //  thinking about when I register a new Lancamento the user should select the ConuntoFamiliar
     //  to link this Lancamento, and only then the user can select the Morador who paid the
-    //  Lancamento
+    //  Lancamento based on the list of Morador from the selected ConjuntoFamiliar which is linked
+    //  to the Lancamento.
     private int morador_comprador; // spinner listando os moradores cadastrados
     private boolean tipo_lancamento; // checkbox identificando se é uma conta de casa ou compra de mercado
     private List<Item> itens;

@@ -41,7 +41,7 @@ public class CadastroMoradorActivity extends AppCompatActivity {
 
         editTextNome.requestFocus();
 
-        // TODO: Change all Toast with UtilsAlert
+        // refactor: Change all Toast with UtilsAlert
         Toast.makeText(this,
                 R.string.limpeza_das_entradas,
                 Toast.LENGTH_LONG).show();
