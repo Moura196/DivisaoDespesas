@@ -7,9 +7,11 @@ Ele elimina a necessidade de anotações em papel e cálculos manuais, fornecend
 ---
 
 ## ✨ Funcionalidades
-- **Cadastro de Moradores/Grupos**: registro de pessoas vinculadas a núcleos familiares (ex: Casal A, Casal B).  
-- **Lançamento de Compras/Contas**: descrição, valor, data e quem realizou o pagamento.  
-- **Classificação de Itens/Rateio**: despesas gerais ou exclusivas de um núcleo.  
+- **Cadastro de ConjuntoFamiliar**: registro de um conjunto familiar que irá dividir as despesas de uma casa. Entidade que uma lista de moradores, de lançamentos e grupos familiares fazem parte dele.  
+- **Cadastro de GrupoFamiliar**: registro de grupo familiar que faz parte de um conjunto familiar. É uma lista de moradores que constantemente dividem o custo de alguns dos itens do lancamento de um conjunto familiar.  
+- **Cadastro de Morador**: registro de pessoas vinculadas a grupos familiares. São as pessoas que fazem parte de um conjunto familiar e que dividem a maioria dos seus custos.  
+- **Cadastro de Lançamento (Compras/Contas)**: descrição, valor_total, data, quem realizou o pagamento, se é ou não uma conta de casa ou compra de mercado e uma lista de itens (caso seja uma compra de mercado).  
+- **Cadastro de Itens**: despesas gerais ou exclusivas de um núcleo.  
 - **Resumo de Fechamento**: cálculo automático do saldo devedor/credor.  
 - **Histórico Offline**: consulta de lançamentos armazenados localmente.  
 
