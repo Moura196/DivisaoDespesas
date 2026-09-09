@@ -19,6 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.R;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.modelo.Item;
 
+// refactor: Make possible to calculate the total value from the list of Item. This total value is the
+//  value that should be showed at the total value from the Lancamento which is a market shopping
+//  list. It is not for a household bill.
 public class CadastroItemActivity extends AppCompatActivity {
 
     public static final String KEY_DESCRICAO_ITEM = "KEY_DESCRICAO_ITEM";
@@ -296,12 +299,12 @@ public class CadastroItemActivity extends AppCompatActivity {
         }
 
         if (modo == MODO_EDITAR &&
-                descricao.equalsIgnoreCase(itemOriginal.getDescricao()) &&
+                descricao.equalsIgnoreCase(itemOriginal.getDescricao_item()) &&
                 quantidadeItem == itemOriginal.getQuantidade() &&
                 valorUnitario.equals(itemOriginal.getValor_unitario()) &&
                 valorDesconto.equals(itemOriginal.getValor_desconto()) &&
                 valorTotal.equals(itemOriginal.getValor_total()) &&
-                tipoRateio == itemOriginal.isRateio_casal() &&
+                tipoRateio == itemOriginal.isIs_rateio_grupo() &&
                 casalRateio == spinnerCasalRateio.getSelectedItemPosition()) {
 
             setResult(CadastroItemActivity.RESULT_CANCELED);
