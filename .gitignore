@@ -19,3 +19,4 @@ local.properties
 
 # Local keystore properties (do not commit)
 key.properties
+/keystores/
