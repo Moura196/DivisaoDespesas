@@ -1,5 +1,6 @@
 package br.edu.utfpr.gabrielmoura.divisaodespesas.Lancamento;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,9 +24,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -37,8 +38,10 @@ import br.edu.utfpr.gabrielmoura.divisaodespesas.modelo.Lancamento;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.persistencia.LancamentosDatabase;
 import br.edu.utfpr.gabrielmoura.divisaodespesas.utils.UtilsAlert;
 
+// docs: documenting the codes from this app. To make it easier to understand and maintainable
 public class CadastroLancamentoActivity extends AppCompatActivity {
 
+    // docs: Identify each one of the attributes
     public static final String KEY_MODO = "MODO";
     public static final String KEY_ID = "ID";
 
@@ -66,11 +69,12 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
     private ItemRecyclerViewAdapter itemRecyclerViewAdapter;
     private int modo;
     private Lancamento lancamentoOriginal;
+    private final ArrayList<Item> listaItens = new ArrayList<>();
 
     private boolean sugerirMoradorComprador = false;
     private int ultimoMoradorComprador = 0;
 
-    private ArrayList<Item> listaItens = new ArrayList<>();
+    private final Calendar calendarDate = Calendar.getInstance();
 
 
     @Override
@@ -129,8 +133,8 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
                 editTextDescricao.setText(lancamentoOriginal.getDescricao());
                 editTextValorTotal.setText(String.valueOf(lancamentoOriginal.getValor_total()));
 
-                SimpleDateFormat displayFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                editTextDate.setText(displayFormat.format(lancamentoOriginal.getData()));
+                calendarDate.setTime(lancamentoOriginal.getData());
+                updateEditTextDate();
 
                 spinnerMoradorComprador.setSelection(lancamentoOriginal.getMorador_comprador());
                 checkBoxTipoLancamento.setChecked(lancamentoOriginal.isTipo_lancamento());
@@ -145,6 +149,29 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
             intent.putExtra("LISTA_ITENS", listaItens);
             launcherNovoItem.launch(intent);
         });
+
+        editTextDate.setOnClickListener( v -> showDatePicker());
+    }
+
+    private void showDatePicker() {
+        int year = calendarDate.get(Calendar.YEAR);
+        int month = calendarDate.get(Calendar.MONTH);
+        int day = calendarDate.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                (view, selectedYear, selectedMonth, selectedDay) -> {
+                    calendarDate.set(selectedYear, selectedMonth, selectedDay);
+                    updateEditTextDate();
+                },
+                year, month, day
+        );
+        datePickerDialog.show();
+    }
+
+    private void updateEditTextDate() {
+        SimpleDateFormat displayFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        editTextDate.setText(displayFormat.format(calendarDate.getTime()));
     }
 
     private ActivityResultLauncher<Intent> launcherNovoItem = registerForActivityResult(
@@ -249,15 +276,7 @@ public class CadastroLancamentoActivity extends AppCompatActivity {
             return;
         }
 
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-            dataLancamento = sdf.parse(dataStr);
-        } catch (ParseException e) {
-            UtilsAlert.mostrarAviso(this, R.string.informe_data_corretamente);
-
-            editTextDate.requestFocus();
-            return;
-        }
+        dataLancamento = calendarDate.getTime();
 
         int moradorComprador = spinnerMoradorComprador.getSelectedItemPosition();
         if (moradorComprador == AdapterView.INVALID_POSITION) {

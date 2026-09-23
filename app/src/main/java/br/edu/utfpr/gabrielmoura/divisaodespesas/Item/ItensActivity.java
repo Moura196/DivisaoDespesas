@@ -205,13 +205,13 @@ public class ItensActivity extends AppCompatActivity {
 
                             Item item = listaItens.get(posicaoItemSelecionado);
 
-                            item.setDescricao(descricao);
+                            item.setDescricao_item(descricao);
                             item.setQuantidade(quantidade);
                             item.setValor_unitario(valorUnitario);
                             item.setValor_desconto(valorDesconto);
                             item.setValor_total(valorTotal);
-                            item.setRateio_casal(tipoRateio);
-                            item.setCasal_rateio(casalRateio);
+                            item.setIs_rateio_grupo(tipoRateio);
+                            item.setGrupo_rateio(casalRateio);
                         }
                     }
 
@@ -230,13 +230,13 @@ public class ItensActivity extends AppCompatActivity {
 
         intentEdicao.putExtra(CadastroItemActivity.KEY_MODO, CadastroItemActivity.MODO_EDITAR);
 
-        intentEdicao.putExtra(CadastroItemActivity.KEY_DESCRICAO_ITEM, item.getDescricao());
+        intentEdicao.putExtra(CadastroItemActivity.KEY_DESCRICAO_ITEM, item.getDescricao_item());
         intentEdicao.putExtra(CadastroItemActivity.KEY_QUANTIDADE_ITEM, item.getQuantidade());
         intentEdicao.putExtra(CadastroItemActivity.KEY_VALOR_UNITARIO_ITEM, item.getValor_unitario());
         intentEdicao.putExtra(CadastroItemActivity.KEY_VALOR_DESCONTO_ITEM, item.getValor_desconto());
         intentEdicao.putExtra(CadastroItemActivity.KEY_VALOR_TOTAL_ITEM, item.getValor_total());
-        intentEdicao.putExtra(CadastroItemActivity.KEY_TIPO_RATEIO_ITEM, item.isRateio_casal());
-        intentEdicao.putExtra(CadastroItemActivity.KEY_CASAL_RATEIO_ITEM, item.getCasal_rateio());
+        intentEdicao.putExtra(CadastroItemActivity.KEY_TIPO_RATEIO_ITEM, item.isIs_rateio_grupo());
+        intentEdicao.putExtra(CadastroItemActivity.KEY_CASAL_RATEIO_ITEM, item.getGrupo_rateio());
 
         launcherEditarItem.launch(intentEdicao);
     }
